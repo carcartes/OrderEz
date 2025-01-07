@@ -1,0 +1,7 @@
+{
+  "name": "OrderEz",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

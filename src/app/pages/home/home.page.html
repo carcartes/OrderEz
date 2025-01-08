@@ -1,16 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-title>OrderEz</ion-title>
+      <ion-title [routerLink]="'/home'">OrderEz</ion-title>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button [routerLink]="'/perfil'">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button [routerLink]="'/carrito'">
         <ion-icon name="cart-outline"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button [routerLink]="'/administracion'">
         <ion-icon name="settings-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -18,16 +18,13 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Searchbar -->
   <ion-searchbar placeholder="Buscar productos"></ion-searchbar>
 
-  <!-- Scan Button -->
   <div class="scan-container">
     <ion-button expand="block" size="large" (click)="simulateScan()">Escanear Mesa</ion-button>
     <p id="scan-result">Mesa no escaneada</p>
   </div>
 
-  <!-- Categories -->
   <div class="categories-container">
     <ion-segment value="completos" (ionChange)="changeCategory($event)">
       <ion-segment-button value="completos">
@@ -39,7 +36,6 @@
     </ion-segment>
   </div>
 
-  <!-- Products -->
   <div class="products-container">
     <ion-grid>
       <ion-row *ngIf="selectedCategory === 'completos' || selectedCategory === 'bebidas'">

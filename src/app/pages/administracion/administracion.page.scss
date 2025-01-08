@@ -1,0 +1,64 @@
+ion-item {
+    margin-bottom: 15px;
+  }
+  
+  .mesa-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .mesa-id {
+    font-weight: bold;
+  }
+  
+  .cliente, .total {
+    margin-left: 10px;
+  }
+  
+  .estado {
+    margin-left: 10px;
+    width: 150px;
+  }
+  
+  .acciones {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+  }
+  
+  ion-select {
+    width: 100%;
+  }
+  
+  ion-card {
+    margin-bottom: 15px;
+  }
+  
+  ion-card-header {
+    background-color: var(--ion-color-light);
+  }
+  
+  ion-card-title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  @media (max-width: 767px) {
+    .mesa-info {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .estado, .acciones {
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+    .acciones {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  

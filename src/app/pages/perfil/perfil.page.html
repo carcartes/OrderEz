@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-title [routerLink]="'/home'">OrderEz</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="'/perfil'">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="'/carrito'">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="'/administracion'">
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input [value]="nombre" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Correo</ion-label>
+    <ion-input [value]="correo" disabled></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" color="primary">Editar</ion-button>
+</ion-content>

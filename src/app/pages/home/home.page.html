@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-title>OrderEz</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Searchbar -->
+  <ion-searchbar placeholder="Buscar productos"></ion-searchbar>
+
+  <!-- Scan Button -->
+  <div class="scan-container">
+    <ion-button expand="block" size="large" (click)="simulateScan()">Escanear Mesa</ion-button>
+    <p id="scan-result">Mesa no escaneada</p>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories-container">
+    <ion-segment value="completos" (ionChange)="changeCategory($event)">
+      <ion-segment-button value="completos">
+        <ion-label>Completos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="bebidas">
+        <ion-label>Bebidas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Products -->
+  <div class="products-container">
+    <ion-grid>
+      <ion-row *ngIf="selectedCategory === 'completos' || selectedCategory === 'bebidas'">
+        <ion-col size="12" *ngFor="let product of selectedProducts">
+          <div class="product-item">
+            <ion-img [src]="product.image" class="product-image"></ion-img>
+            <div class="product-info">
+              <h3>{{ product.name }}</h3>
+              <p>${{ product.price }}</p>
+            </div>
+            <ion-button size="small" fill="clear" class="add-button">
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

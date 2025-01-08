@@ -11,8 +11,6 @@ export class AdministracionPage {
     { id: 1, cliente: 'Juan Pérez', total: 10000, estado: 'Pendiente' },
     { id: 2, cliente: 'Ana Gómez', total: 5000, estado: 'Pendiente' },
     { id: 3, cliente: 'Carlos López', total: 7000, estado: 'Pendiente' },
-    { id: 4, cliente: 'Luisa Martínez', total: 15000, estado: 'Pendiente' },
-    { id: 5, cliente: 'Pedro Sánchez', total: 5000, estado: 'Pendiente' },
   ];
 
   constructor() {}

@@ -10,15 +10,15 @@ export class HomePage {
   selectedCategory = 'completos';
 
   completos = [
-    { name: 'Italiano', price: 5.99, image: 'assets/italiano.jpg' },
-    { name: 'Alemán', price: 6.49, image: 'assets/aleman.jpg' },
-    { name: 'Chucrut', price: 5.79, image: 'assets/chucrut.jpg' },
+    { name: 'Italiano', price: 2500, image: 'assets/italiano.jpg' },
+    { name: 'Chileno', price: 2000, image: 'assets/chileno.jpg' },
+    { name: 'Chucrut', price: 1500, image: 'assets/chucrut.jpg' },
   ];
 
   bebidas = [
-    { name: 'Coca-Cola', price: 1.99, image: 'assets/coca-cola.jpg' },
-    { name: 'Fanta', price: 1.89, image: 'assets/fanta.jpg' },
-    { name: 'Sprite', price: 1.99, image: 'assets/sprite.jpg' },
+    { name: 'Coca-Cola', price: 1000, image: 'assets/coca-cola.jpg' },
+    { name: 'Fanta', price: 1000, image: 'assets/fanta.jpg' },
+    { name: 'Sprite', price: 1000, image: 'assets/sprite.jpg' },
   ];
 
   get selectedProducts() {

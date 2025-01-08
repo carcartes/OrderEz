@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-mesa',
@@ -8,25 +7,16 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false
 })
 export class DetalleMesaPage {
-  mesaId: number;
-  detallesPedido = {
-    mesaId: 1,
+  orden = {
+    mesa: 1,
     cliente: 'Juan Pérez',
-    items: [
-      { nombre: 'Italiano', cantidad: 1, precio: 2500 },
-      { nombre: 'Coca-Cola', cantidad: 2, precio: 1000 },
-    ],
-    total: 25.50,
-    estado: 'Recibido',
+    productos: [
+      { categoria: 'Completos', nombre: 'Italiano', cantidad: 2, imagen: 'assets/italiano.jpg' },
+      { categoria: 'Completos', nombre: 'Chileno', cantidad: 1, imagen: 'assets/chileno.jpg' },
+      { categoria: 'Bebidas', nombre: 'Coca-Cola', cantidad: 3, imagen: 'assets/coca-cola.jpg' },
+      { categoria: 'Bebidas', nombre: 'Fanta', cantidad: 2, imagen: 'assets/fanta.jpg' },
+    ]
   };
 
-  constructor(private route: ActivatedRoute) {
-    this.mesaId = Number(this.route.snapshot.paramMap.get('id'));
-    // Aquí iría la lógica para obtener los detalles del pedido de la mesa
-  }
-
-  updateEstado(nuevoEstado: string) {
-    // Aquí iría la lógica para actualizar el estado del pedido
-    console.log('Actualizar estado del pedido a', nuevoEstado);
-  }
+  constructor() {}
 }

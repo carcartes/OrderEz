@@ -33,6 +33,14 @@ const routes: Routes = [
     path: 'mis-pedidos',
     loadChildren: () => import('./pages/mis-pedidos/mis-pedidos.module').then( m => m.MisPedidosPageModule)
   },
+  {
+    path: 'qr',
+    loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
+  },
+  {
+    path: 'boleta',
+    loadChildren: () => import('./pages/boleta/boleta.module').then( m => m.BoletaPageModule)
+  },
 
 
 

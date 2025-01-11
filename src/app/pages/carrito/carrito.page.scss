@@ -1,55 +1,144 @@
-.cart-container {
-    margin-top: 20px;
-  }
-  
-  .cart-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid var(--ion-color-light);
-  }
-  
-  .cart-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 15px;
-  }
-  
-  .cart-info {
-    flex-grow: 1;
-  }
-  
-  .cart-info h3 {
-    font-size: 16px;
-    margin: 0;
-  }
-  
-  .cart-info p {
-    font-size: 14px;
-    color: var(--ion-color-medium);
-    margin: 5px 0 0;
-  }
-  
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
-  }
-  
-  .quantity-controls span {
-    font-size: 16px;
-    margin: 0 10px;
-  }
-  
-  .total-container {
-    margin-top: 20px;
+/* Estilos para el botón de cierre */
+.close-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+}
+
+/* Estilo del título "Carro de compras" */
+.cart-title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.cart-title h2 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Estilo para cada producto */
+.cart-item {
+  margin-top: 20px;
+}
+
+.cart-product {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.product-info {
+  margin-left: 15px;
+  flex-grow: 1;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #808080;
+}
+
+.quantity-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.quantity-button {
+  background-color: #e0e0e0;
+  border: none;
+  color: #333;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quantity {
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+/* Estilo para el botón de añadir ítem */
+.add-item {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-item-button {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilos para el subtotal */
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-top: 1px solid #e0e0e0;
+}
+
+.subtotal-label {
+  color: #333;
+}
+
+.subtotal-value {
+  color: #333;
+}
+
+/* Estilos para el botón de continuar en el footer */
+.footer-toolbar {
+  padding: 10px;
+}
+
+.continue-button {
+  background-color: #000;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 0 20px;
+}
+
+  .footer-buttons {
+    vertical-align: top;
+    display: inline-block;
     text-align: center;
+    margin: 0 10px; /* Espacio entre los botones */
   }
   
-  .total-container h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+  .caption {
+    display: block;
+    font-size: 12px;
+    color: #505050; /* Gris oscuro */
   }
   
+  .footer-toolbar {
+    display: flex;
+    justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
+    align-items: center;
+    padding: 0 15px; /* Ajusta el padding de los lados */
+  }

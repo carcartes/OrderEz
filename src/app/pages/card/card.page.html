@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" class="back-button">
+        <ion-icon name="arrow-back-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Añadir tarjeta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container ion-padding">
+    <!-- Número de tarjeta -->
+    <div class="form-group">
+      <label for="card-number">Número de tarjeta</label>
+      <input type="text" id="card-number" placeholder="0000 0000 0000 0000" />
+    </div>
+
+    <!-- Fecha de expiración y CVV -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="expiry-date">Fecha de expiración</label>
+        <input type="text" id="expiry-date" placeholder="MM/YY" />
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" placeholder="123" />
+      </div>
+    </div>
+
+    <!-- Botón de añadir tarjeta -->
+    <div class="button-container" color="dark" routerLink="/home">
+      <button class="add-card-button">Pagar</button>
+    </div>
+  </div>
+</ion-content>

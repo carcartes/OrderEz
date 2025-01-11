@@ -1,0 +1,74 @@
+
+.rounded-searchbar {
+    --background: #f0f0f0; /* Light gray background */
+    --border-radius: 20px;
+  }
+  
+  .footer-buttons {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px; /* Espacio entre los botones */
+  }
+  
+  .caption {
+    display: block;
+    font-size: 12px;
+    color: #505050; /* Gris oscuro */
+  }
+  
+  .footer-toolbar {
+    display: flex;
+    justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
+    align-items: center;
+    padding: 0 15px; /* Ajusta el padding de los lados */
+  }
+  
+  
+  .category-bar {
+    display: flex;
+    overflow-x: auto; /* Permite el scroll horizontal */
+    padding: 10px;
+    white-space: nowrap; /* Evita que los elementos se dividan en líneas */
+  }
+  
+  .category-item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px; /* Espacio entre los botones */
+  }
+
+
+  /* Título de Categorías */
+.categories-title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .categories-title h2 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  /* Estilos de cada categoría */
+  .category {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .category-image {
+    width: 80%; /* Para que la imagen ocupe el 100% del tamaño de la columna */
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .category-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    font-weight: normal;
+  }
+  

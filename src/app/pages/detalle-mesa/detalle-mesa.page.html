@@ -1,30 +1,39 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">OrderEz</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content class="ion-padding">
-  <h3>Resumen de la Orden</h3>
-  
-  <div class="orden-info">
-    <p><strong>Mesa:</strong> {{ orden.mesa }}</p>
-    <p><strong>Cliente:</strong> {{ orden.cliente }}</p>
+  <!-- Botón para cerrar y volver al Home -->
+  <div class="close-button" (click)="goBack()">
+    <ion-icon name="close" size="large"></ion-icon>
   </div>
 
-  <ion-list>
-    <ion-item *ngFor="let producto of orden.productos">
-      <ion-thumbnail slot="start">
-        <img [src]="producto.imagen" alt="{{ producto.nombre }}">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ producto.nombre }}</h2>
-        <p>Categoría: {{ producto.categoria }}</p>
-        <p>Cantidad: {{ producto.cantidad }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+  <!-- Título "Carro de compras" -->
+  <div class="cart-title">
+    <h2>Detalles Orden</h2>
+  </div>
+
+  <!-- Listado de productos -->
+  <div class="cart-item">
+    <!-- Producto 1 -->
+    <div class="cart-product">
+      <img src="assets/italiano.jpg" alt="Completo Italiano" class="product-image">
+      <div class="product-info">
+        <div class="product-name"><b>Completo Italiano</b></div>
+        <div class="product-price">CLP 2,500</div>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="cart-product">
+      <img src="assets/coca-cola.jpg" alt="Coca Cola" class="product-image">
+      <div class="product-info">
+        <div class="product-name"><b>Coca Cola</b></div>
+        <div class="product-price">CLP 1,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtotal y total -->
+  <div class="subtotal">
+    <div class="subtotal-label">Subtotal</div>
+    <div class="subtotal-value">CLP 3,500</div>
+  </div>
+

@@ -1,0 +1,67 @@
+.footer-buttons {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px; /* Espacio entre los botones */
+  }
+  
+  .caption {
+    display: block;
+    font-size: 12px;
+    color: #505050; /* Gris oscuro */
+  }
+  
+  .footer-toolbar {
+    display: flex;
+    justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
+    align-items: center;
+    padding: 0 15px; /* Ajusta el padding de los lados */
+  }
+
+  #pedidos-adm {
+    background-color: #f8f8f8; /* Fondo claro para la página */
+  }
+  
+  .products-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre los elementos */
+  }
+  
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
+  .order-table {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444; /* Color del texto */
+  }
+  
+  .btn-view-orders {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-view-orders:hover {
+    background-color: #0056b3; /* Oscurecer al pasar el cursor */
+  }
+  

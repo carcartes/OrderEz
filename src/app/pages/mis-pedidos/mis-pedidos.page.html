@@ -1,21 +1,104 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+<ion-header >
+  <ion-toolbar color="white" class="header-toolbar ion-shadow">
+    <ion-title class="ion-text-left">
+      <h2>Ordenes</h2>
+    </ion-title>
+    <ion-buttons slot="end" routerLink="/carrito">
+      <ion-icon name="cart" size="small" class="icon-cart"></ion-icon>
     </ion-buttons>
-    <ion-title class="ion-text-center">OrderEz</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" id="mis-pedidos">
-  <ion-list>
-    <ion-item *ngFor="let pedido of pedidos">
-      <ion-label>
-        <h2>Pedido {{ pedido.id }} - Mesa {{ pedido.mesa }}</h2>
-        <p>Estado: {{ pedido.estado }}</p>
-        <p>Total: ${{ pedido.total }}</p>
-      </ion-label>
-      <ion-button [routerLink]="'/detalle-mesa'">Ver</ion-button>
-    </ion-item>
-  </ion-list>
+  <!-- Tabs para dividir pedidos actuales y pasados -->
+  <ion-segment [(ngModel)]="segment" color="primary">
+    <ion-segment-button value="actuales">
+      <ion-label>Pedidos Actuales</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pasados">
+      <ion-label>Pedidos Pasados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Sección de Pedidos Actuales -->
+  <div *ngIf="segment === 'actuales'">
+    <h2>Pedidos Pendientes</h2>
+    <ion-list>
+      <!-- Pedido 1 -->
+      <ion-item>
+        <ion-label>
+          <h2>Pedido 101 - Mesa 5</h2>
+          <p>Estado: Pendiente</p>
+          <p>Total: CLP 15,000</p>
+        </ion-label>
+        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
+      </ion-item>
+
+      <!-- Pedido 2 -->
+      <ion-item>
+        <ion-label>
+          <h2>Pedido 102 - Mesa 3</h2>
+          <p>Estado: Pendiente</p>
+          <p>Total: CLP 8,500</p>
+        </ion-label>
+        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Sección de Pedidos Pasados -->
+  <div *ngIf="segment === 'pasados'">
+    <h2>Pedidos Entregados</h2>
+    <ion-list>
+      <!-- Pedido 3 -->
+      <ion-item>
+        <ion-label>
+          <h2>Pedido 201 - Mesa 2</h2>
+          <p>Estado: Entregado</p>
+          <p>Total: CLP 12,000</p>
+        </ion-label>
+        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
+      </ion-item>
+
+      <!-- Pedido 4 -->
+      <ion-item>
+        <ion-label>
+          <h2>Pedido 202 - Mesa 7</h2>
+          <p>Estado: Entregado</p>
+          <p>Total: CLP 18,000</p>
+        </ion-label>
+        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="white" class="footer-toolbar ion-shadow">
+    <ion-buttons class="footer-buttons" routerLink="/home" >
+      <ion-icon name="home" size="small"></ion-icon>
+      <span class="caption">Inicio</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+      <ion-icon name="albums" size="small"></ion-icon>
+      <span class="caption">Categorías</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+      <ion-icon name="search" size="small"></ion-icon>
+      <span class="caption">Buscar</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/mis-pedidos" >
+      <ion-icon name="receipt" size="small"></ion-icon>
+      <span class="caption">Órdenes</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/perfil" >
+      <ion-icon name="person" size="small"></ion-icon>
+      <span class="caption">Perfil</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

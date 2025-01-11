@@ -1,0 +1,76 @@
+/* General styles */
+.header-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .back-icon {
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .header-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    margin-right: 40px; /* Espacio para alinear con el botón cerrar */
+  }
+  
+  /* Formulario */
+  .form-container {
+    margin-top: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f2f2f2;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  input:focus {
+    background-color: white;
+    border: 1px solid black;
+  }
+  
+  /* Botón */
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn-save {
+    padding: 12px 20px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .btn-save:active {
+    background-color: black;
+    color: white;
+  }
+  

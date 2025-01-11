@@ -1,0 +1,206 @@
+/* Banner */
+.banner {
+    width: 100%;
+    height: 100px; /* Puedes ajustar la altura del banner según lo que necesites */
+    background-color: #ccc; /* Si no tienes imagen de banner, puedes usar un color de fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el banner */
+  }
+  
+  /* Título de la categoría */
+  .category-title {
+    text-align: center;
+    margin-top: 20px; /* Ajusta la posición del título si es necesario */
+  }
+  
+  .category-title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Botón de regreso al Home */
+  .back-button {
+    position: fixed;
+    z-index: 1000;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.3); /* Gris transparente */
+    border-radius: 50%;
+    padding: 2px;
+  }
+  
+  .back-button ion-icon {
+    font-size: 20px;
+    color: white;
+  }
+  
+
+  ////fav
+  /// 
+/* Estilos para la sección de productos */
+.productos-categoria {
+    padding: 16px;
+  }
+  
+  /* Estilo para el encabezado de la categoría */
+  .categoria-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .categoria-header h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .flecha-derecha {
+    font-size: 20px;
+    color: #007bff;
+  }
+  
+  /* Estilo para los productos en el carrusel */
+  .productos-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 10px 0;
+  }
+  
+  .producto-card {
+    position: relative;
+    width: 100px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .producto-imagen {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  }
+  
+  .btn-agregar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+  
+  .producto-info {
+    padding: 5px 10px; /* Reducido el padding para disminuir el espacio */
+    text-align: center;
+  }
+  
+  .precio {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0; /* Elimina el margen entre el precio y el nombre */
+  }
+  
+  .nombre-producto {
+    font-size: 12px;
+    color: #777;
+    margin: 5px 0 0 0; /* Añadido margen superior de 5px */
+  }
+
+  /* Título de la categoría */
+.category-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  /* Título de la sección */
+  .section-title h3 {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px 15px;
+    color: #505050; /* Gris oscuro */
+  }
+  
+  /* Lista de productos */
+  .product-list {
+    padding: 0 15px;
+  }
+  
+  .product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea; /* Separador */
+  }
+  
+  /* Información del producto */
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .product-price {
+    font-size: 14px;
+    color: #888888; /* Gris */
+    margin: 5px 0 0;
+  }
+  
+  /* Imagen del producto */
+  .product-image-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Botón de añadir al carrito */
+  .add-to-cart-button {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .add-to-cart-button ion-icon {
+    font-size: 18px;
+    color: #505050; /* Gris oscuro */
+  }

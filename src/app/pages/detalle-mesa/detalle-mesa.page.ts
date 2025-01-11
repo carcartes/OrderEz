@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router'; 
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-detalle-mesa',
   templateUrl: './detalle-mesa.page.html',
@@ -7,16 +8,31 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class DetalleMesaPage {
-  orden = {
-    mesa: 1,
-    cliente: 'Juan Pérez',
-    productos: [
-      { categoria: 'Completos', nombre: 'Italiano', cantidad: 2, imagen: 'assets/italiano.jpg' },
-      { categoria: 'Completos', nombre: 'Chileno', cantidad: 1, imagen: 'assets/chileno.jpg' },
-      { categoria: 'Bebidas', nombre: 'Coca-Cola', cantidad: 3, imagen: 'assets/coca-cola.jpg' },
-      { categoria: 'Bebidas', nombre: 'Fanta', cantidad: 2, imagen: 'assets/fanta.jpg' },
-    ]
-  };
+  // Array de productos en el carrito
+  cartItems = [
+    {
+      name: 'Completo Italiano',
+      price: 2500,
+      quantity: 1,
+      image: 'assets/images/completo-italiano.jpg'
+    },
+    {
+      name: 'Coca Cola',
+      price: 1000,
+      quantity: 1,
+      image: 'assets/images/coca-cola.jpg'
+    }
+  ];
 
-  constructor() {}
+  constructor(private router: Router, private location: Location) {}
+
+
+  // Función para redirigir a la página de inicio
+  // Función para ir a la página anterior
+  goBack() {
+    this.location.back();
+  }
+
+
+ 
 }

@@ -1,0 +1,41 @@
+<ion-content class="ion-padding">
+
+  <!-- Header con botón de cerrar y título -->
+  <div class="header-toolbar">
+    <ion-icon name="close" class="back-icon" (click)="goToHome()"></ion-icon>
+    <h2 class="header-title">Editar Perfil</h2>
+  </div>
+
+  <!-- Formulario de editar perfil -->
+  <div class="form-container">
+    <!-- Campo: Nombre -->
+    <div class="input-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Ej: Juan" />
+    </div>
+
+    <!-- Campo: Apellido -->
+    <div class="input-group">
+      <label for="apellido">Apellido</label>
+      <input type="text" id="apellido" placeholder="Ej: Pérez" />
+    </div>
+
+    <!-- Campo: Correo -->
+    <div class="input-group">
+      <label for="correo">Correo</label>
+      <input type="email" id="correo" placeholder="Ej: juan@example.com" />
+    </div>
+
+    <!-- Campo: Contraseña -->
+    <div class="input-group">
+      <label for="contrasena">Contraseña</label>
+      <input type="password" id="contrasena" placeholder="********" />
+    </div>
+  </div>
+
+  <!-- Botón para guardar cambios -->
+  <div class="button-container">
+    <button class="btn-save" (click)="goToHome()">Guardar</button>
+  </div>
+
+</ion-content>

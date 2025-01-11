@@ -1,0 +1,116 @@
+.footer-buttons {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px; /* Espacio entre los botones */
+  }
+  
+  .caption {
+    display: block;
+    font-size: 12px;
+    color: #505050; /* Gris oscuro */
+  }
+  
+  .footer-toolbar {
+    display: flex;
+    justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
+    align-items: center;
+    padding: 0 15px; /* Ajusta el padding de los lados */
+  }
+
+
+  .products-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .add-product-button .btn-add-product {
+    width: 100%;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .product-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+  }
+  
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+  }
+  
+  .product-price {
+    font-size: 14px;
+    color: #999;
+    margin: 5px 0 0;
+  }
+  
+  .product-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .product-actions .btn-edit,
+  .product-actions .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .product-actions .btn-edit {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .product-actions .btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+  }
+
+  /* Botón para filtrar */
+.filter-button .btn-filter {
+    width: 100%;
+    background-color: #6c757d; /* Gris claro */
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  

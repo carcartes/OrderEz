@@ -1,0 +1,94 @@
+/* Estilos generales para la página */
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;
+}
+
+.back-icon {
+  cursor: pointer;
+  color: #000;
+}
+
+/* Segment styles */
+ion-segment {
+  margin: 15px 0;
+}
+
+ion-segment-button {
+  --color: #000;
+  --color-checked: #fff;
+  --background: #f0f0f0;
+  --background-checked: #007bff;
+  --border-color: #ddd;
+}
+
+/* Título de secciones */
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 15px 0;
+  padding: 0 15px;
+  color: #333;
+}
+
+/* Contenedor de pedidos */
+.pedido-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 15px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pedido-info {
+  flex-grow: 1;
+}
+
+.pedido-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+.pedido-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Botones de acciones */
+.pedido-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-action {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-action:hover {
+  background-color: #007bff;
+  color: #fff;
+}

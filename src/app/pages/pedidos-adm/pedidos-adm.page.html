@@ -1,0 +1,80 @@
+<ion-content class="ion-padding" id="pedidos-adm">
+  <!-- Título de la página -->
+  <div class="orders-header ion-padding">
+    <h2>Pedidos</h2>
+  </div>
+
+  <!-- Lista de mesas -->
+  <div class="order-list">
+    <!-- Mesa 1 -->
+    <div class="order-item ion-padding">
+      <div class="order-info">
+        <h3 class="order-table">Mesa 1</h3>
+      </div>
+      <div class="order-actions">
+        <button class="btn-view-orders" [routerLink]="'/mesa'">Ver pedidos</button>
+      </div>
+    </div>
+
+    <!-- Mesa 2 -->
+    <div class="order-item ion-padding">
+      <div class="order-info">
+        <h3 class="order-table">Mesa 2</h3>
+      </div>
+      <div class="order-actions">
+        <button class="btn-view-orders">Ver pedidos</button>
+      </div>
+    </div>
+
+    <!-- Mesa 3 -->
+    <div class="order-item ion-padding">
+      <div class="order-info">
+        <h3 class="order-table">Mesa 3</h3>
+      </div>
+      <div class="order-actions">
+        <button class="btn-view-orders">Ver pedidos</button>
+      </div>
+    </div>
+
+    <!-- Mesa 4 -->
+    <div class="order-item ion-padding">
+      <div class="order-info">
+        <h3 class="order-table">Mesa 4</h3>
+      </div>
+      <div class="order-actions">
+        <button class="btn-view-orders" >Ver pedidos</button>
+      </div>
+    </div>
+
+    <!-- Mesa 5 -->
+    <div class="order-item ion-padding">
+      <div class="order-info">
+        <h3 class="order-table">Mesa 5</h3>
+      </div>
+      <div class="order-actions">
+        <button class="btn-view-orders">Ver pedidos</button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="white" class="footer-toolbar ion-shadow">
+    <ion-buttons class="footer-buttons" routerLink="/home" >
+      <ion-icon name="home" size="small"></ion-icon>
+      <span class="caption">Inicio</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/catalogo" >
+      <ion-icon name="albums" size="small"></ion-icon>
+      <span class="caption">Productos</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/mesa" >
+      <ion-icon name="search" size="small"></ion-icon>
+      <span class="caption">Pedidos</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+

@@ -1,0 +1,35 @@
+<ion-content class="ion-padding">
+
+  <!-- Header con botón de cerrar y título -->
+  <div class="header-toolbar">
+    <ion-icon name="close" class="back-icon" (click)="goToCatalogo()"></ion-icon>
+    <h2 class="header-title">Modificar Producto</h2>
+  </div>
+
+  <!-- Formulario de edición/agregar producto -->
+  <div class="form-container">
+    <!-- Campo: Nombre -->
+    <div class="input-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Ej: Coca-Cola" />
+    </div>
+
+    <!-- Campo: Imagen -->
+    <div class="input-group">
+      <label for="imagen">URL de la Imagen</label>
+      <input type="text" id="imagen" placeholder="Ej: https://example.com/image.jpg" />
+    </div>
+
+    <!-- Campo: Categoría -->
+    <div class="input-group">
+      <label for="categoria">Categoría</label>
+      <input type="text" id="categoria" placeholder="Ej: Bebidas" />
+    </div>
+  </div>
+
+  <!-- Botón para agregar producto -->
+  <div class="button-container">
+    <button class="btn-add-product" (click)="goToCatalogo()">Modificar</button>
+  </div>
+
+</ion-content>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-carrito',
@@ -7,27 +8,54 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class CarritoPage {
+  // Array de productos en el carrito
   cartItems = [
-    { name: 'Italiano', price: 2500, quantity: 1, image: 'assets/italiano.jpg' },
-    { name: 'Coca-Cola', price: 1000, quantity: 2, image: 'assets/coca-cola.jpg' },
-    { name: 'Chucrut', price: 1500, quantity: 1, image: 'assets/chucrut.jpg' },
+    {
+      name: 'Completo Italiano',
+      price: 2500,
+      quantity: 1,
+      image: 'assets/images/completo-italiano.jpg'
+    },
+    {
+      name: 'Coca Cola',
+      price: 1000,
+      quantity: 1,
+      image: 'assets/images/coca-cola.jpg'
+    }
   ];
 
-  get total() {
-    return this.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
-  }
+  constructor(private router: Router) {}
 
-  increaseQuantity(index: number) {
-    this.cartItems[index].quantity++;
-  }
-
+  // Función para disminuir la cantidad
   decreaseQuantity(index: number) {
     if (this.cartItems[index].quantity > 1) {
       this.cartItems[index].quantity--;
     }
   }
 
-  removeItem(index: number) {
-    this.cartItems.splice(index, 1);
+  // Función para aumentar la cantidad
+  increaseQuantity(index: number) {
+    this.cartItems[index].quantity++;
+  }
+
+  // Función para redirigir a la página de inicio
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+
+  // Función para calcular el total del carrito
+  getTotal() {
+    return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+
+  // Función para agregar un producto al carrito (puedes personalizarla)
+  addItem() {
+    const newItem = {
+      name: 'Nuevo Producto',
+      price: 1500,
+      quantity: 1,
+      image: 'assets/images/nuevo-producto.jpg'
+    };
+    this.cartItems.push(newItem);
   }
 }

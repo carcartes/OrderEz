@@ -1,0 +1,72 @@
+<ion-header>
+  <div class="header-toolbar">
+    <ion-icon name="close" size="small" class="back-icon" (click)="goBack()"></ion-icon>
+    <h1 class="header-title">Mesa 1</h1>
+  </div>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Selector de segmentos -->
+  <ion-segment (ionChange)="segmentChanged($event)" value="actuales">
+    <ion-segment-button value="actuales">
+      <ion-label>Pedidos Actuales</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pasados">
+      <ion-label>Pedidos Pasados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Pedidos Actuales -->
+  <div *ngIf="currentSegment === 'actuales'">
+    <h2 class="section-title">Pedidos Actuales</h2>
+    <div class="pedido-item">
+      <div class="pedido-info">
+        <h3>Pedido 101</h3>
+        <p>Fecha: 2024-12-15</p>
+        <p>Estado: Pendiente</p>
+      </div>
+      <div class="pedido-actions">
+        <button class="btn-action" (click)="cambiarEstado()">Cambiar Estado</button>
+        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
+      </div>
+    </div>
+
+    <div class="pedido-item">
+      <div class="pedido-info">
+        <h3>Pedido 102</h3>
+        <p>Fecha: 2024-12-15</p>
+        <p>Estado: En Preparación</p>
+      </div>
+      <div class="pedido-actions">
+        <button class="btn-action" (click)="cambiarEstado()">Cambiar Estado</button>
+        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pedidos Pasados -->
+  <div *ngIf="currentSegment === 'pasados'">
+    <h2 class="section-title">Pedidos Pasados</h2>
+    <div class="pedido-item">
+      <div class="pedido-info">
+        <h3>Pedido 99</h3>
+        <p>Fecha: 2024-12-14</p>
+        <p>Estado: Entregado</p>
+      </div>
+      <div class="pedido-actions">
+        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
+      </div>
+    </div>
+
+    <div class="pedido-item">
+      <div class="pedido-info">
+        <h3>Pedido 100</h3>
+        <p>Fecha: 2024-12-14</p>
+        <p>Estado: Entregado</p>
+      </div>
+      <div class="pedido-actions">
+        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

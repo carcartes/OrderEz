@@ -1,0 +1,31 @@
+<ion-content>
+  <!-- Botón para cerrar y volver al Home -->
+  <div class="close-button" (click)="goHome()">
+    <ion-icon name="close" size="large"></ion-icon>
+  </div>
+
+  <!-- Título "Formas de pago" -->
+  <div class="cart-title ion-padding">
+    <h2>Formas de pago</h2>
+  </div>
+
+  <!-- Subtítulo "Métodos de pago" -->
+  <div class="payment-methods-description ion-padding">
+    <p>Métodos de pago</p>
+  </div>
+
+  <!-- Lista de métodos de pago -->
+  <div class="payment-methods ion-padding">
+    <!-- Tarjeta de crédito o débito -->
+    <div class="payment-option" routerLink="/card">
+      <img src="assets/card.png" alt="Tarjeta de crédito/débito" />
+      <span>Tarjeta de crédito o débito</span>
+    </div>
+
+    <!-- Efectivo -->
+    <div class="payment-option">
+      <img src="assets/cash.png" alt="Efectivo" />
+      <span>Efectivo</span>
+    </div>
+  </div>
+</ion-content>

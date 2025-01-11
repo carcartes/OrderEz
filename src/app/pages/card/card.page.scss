@@ -1,0 +1,87 @@
+/* Header */
+ion-header {
+    ion-toolbar {
+      --background: transparent;
+      ion-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .back-button {
+        margin-left: 10px;
+      }
+      ion-icon {
+        font-size: 24px;
+      }
+    }
+  }
+  
+  /* Formulario */
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #666; /* Gris claro */
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: #f7f7f7; /* Gris claro */
+    transition: 0.3s;
+  }
+  
+  input:focus {
+    background-color: #fff; /* Blanco */
+    border: 1px solid #000; /* Negro */
+    outline: none;
+  }
+  
+  /* Estilo para las filas del formulario */
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+  
+  /* Botón de añadir tarjeta */
+  .button-container {
+    margin-top: 30px;
+  }
+  
+  .add-card-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* Blanco */
+    background-color: #ccc; /* Gris claro */
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  
+  .add-card-button:focus,
+  .add-card-button:hover {
+    background-color: #000; /* Negro */
+    color: #fff; /* Blanco */
+  }
+  

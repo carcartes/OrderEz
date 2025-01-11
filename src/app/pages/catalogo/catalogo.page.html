@@ -1,0 +1,65 @@
+<ion-content>
+  <!-- Título de la página -->
+  <div class="products-header ion-padding">
+    <h2>Catalogo</h2>
+  </div>
+
+  <!-- Botón para añadir un nuevo producto -->
+  <div class="add-product-button ion-padding">
+    <button class="btn-add-product" routerLink="/add-producto">+ Nuevo Producto</button>
+  </div>
+
+   <!-- Botón para filtrar productos -->
+   <div class="filter-button ion-padding">
+    <button class="btn-filter">Filtrar</button>
+  </div>
+
+  <!-- Lista de productos -->
+  <div class="product-list">
+    <!-- Producto ejemplo -->
+    <div class="product-item ion-padding">
+      <img src="assets/coca-cola.jpg" alt="Producto" class="product-image" />
+      <div class="product-info">
+        <h3 class="product-name">Coca-Cola</h3>
+        <p class="product-price">CLP 1,500</p>
+      </div>
+      <div class="product-actions">
+        <button class="btn-edit" routerLink="/edit-producto">Editar</button>
+        <button class="btn-delete">Eliminar</button>
+      </div>
+    </div>
+
+    <!-- Repetir más productos según sea necesario -->
+    <div class="product-item ion-padding">
+      <img src="assets/italiano.webp" alt="Producto" class="product-image" />
+      <div class="product-info">
+        <h3 class="product-name">Completo Italiano</h3>
+        <p class="product-price">CLP 2,500</p>
+      </div>
+      <div class="product-actions">
+        <button class="btn-edit" routerLink="/edit-producto">Editar</button>
+        <button class="btn-delete">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="white" class="footer-toolbar ion-shadow">
+    <ion-buttons class="footer-buttons" routerLink="/home" >
+      <ion-icon name="home" size="small"></ion-icon>
+      <span class="caption">Inicio</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/productos" >
+      <ion-icon name="albums" size="small"></ion-icon>
+      <span class="caption">Productos</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/pedidos-adm" >
+      <ion-icon name="search" size="small"></ion-icon>
+      <span class="caption">Pedidos</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+

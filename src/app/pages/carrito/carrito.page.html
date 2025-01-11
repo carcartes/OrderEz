@@ -1,44 +1,64 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">OrderEz</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content class="ion-padding" id="carrito">
-  
-  <div class="cart-container">
-    <ion-grid>
-      <ion-row *ngFor="let item of cartItems; let i = index">
-        <ion-col size="12">
-          <div class="cart-item">
-            <ion-img [src]="item.image" class="cart-image"></ion-img>
-            <div class="cart-info">
-              <h3>{{ item.name }}</h3>
-              <p>${{ item.price }}</p>
-              <div class="quantity-controls">
-                <ion-button size="small" fill="clear" (click)="decreaseQuantity(i)">
-                  <ion-icon name="remove-circle-outline"></ion-icon>
-                </ion-button>
-                <span>{{ item.quantity }}</span>
-                <ion-button size="small" fill="clear" (click)="increaseQuantity(i)">
-                  <ion-icon name="add-circle-outline"></ion-icon>
-                </ion-button>
-              </div>
-            </div>
-            <ion-button size="small" fill="clear" color="danger" (click)="removeItem(i)">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <!-- Botón para cerrar y volver al Home -->
+  <div class="close-button" (click)="goHome()">
+    <ion-icon name="close" size="large"></ion-icon>
   </div>
 
-  <div class="total-container">
-    <h3>Total: ${{ total }}</h3>
-    <ion-button expand="block" color="primary">Realizar Pedido</ion-button>
+  <!-- Título "Carro de compras" -->
+  <div class="cart-title">
+    <h2>Carro de compras</h2>
   </div>
+
+  <!-- Listado de productos -->
+  <div class="cart-item">
+    <!-- Producto 1 -->
+    <div class="cart-product">
+      <img src="assets/italiano.jpg" alt="Completo Italiano" class="product-image">
+      <div class="product-info">
+        <div class="product-name"><b>Completo Italiano</b></div>
+        <div class="product-price">CLP 2,500</div>
+      </div>
+      <div class="quantity-buttons">
+        <button class="quantity-button" >-</button>
+        <span class="quantity">1</span>
+        <button class="quantity-button" >+</button>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="cart-product">
+      <img src="assets/coca-cola.jpg" alt="Coca Cola" class="product-image">
+      <div class="product-info">
+        <div class="product-name"><b>Coca Cola</b></div>
+        <div class="product-price">CLP 1,000</div>
+      </div>
+      <div class="quantity-buttons">
+        <button class="quantity-button" >-</button>
+        <span class="quantity">1</span>
+        <button class="quantity-button">+</button>
+      </div>
+    </div>
+
+    <!-- Añadir nuevo producto -->
+    <div class="add-item">
+      <button class="add-item-button" routerLink="/home">+ Añadir ítem</button>
+    </div>
+  </div>
+
+  <!-- Subtotal y total -->
+  <div class="subtotal">
+    <div class="subtotal-label">Subtotal</div>
+    <div class="subtotal-value">CLP 3,500</div>
+  </div>
+
+
+
 </ion-content>
+
+  <!-- Footer con botón de continuar -->
+  <ion-footer>
+    <ion-toolbar color="white" class="footer-toolbar">
+      <ion-button expand="full" color="dark" class="continue-button" routerLink="/payment" >Continuar</ion-button>
+    </ion-toolbar>
+  </ion-footer>

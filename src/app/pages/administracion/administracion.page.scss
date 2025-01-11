@@ -1,26 +1,19 @@
-.mesa-card {
-  margin: 10px 0;
+.footer-buttons {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  margin: 0 10px; /* Espacio entre los botones */
 }
 
-.mesa-info {
+.caption {
+  display: block;
+  font-size: 12px;
+  color: #505050; /* Gris oscuro */
+}
+
+.footer-toolbar {
   display: flex;
+  justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
   align-items: center;
-  justify-content: space-between;
-}
-
-.mesa-title {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.ver-boton {
-  margin: 0 10px;
-}
-
-.estado-boton {
-  --background: var(--ion-color-primary);
-  --color: white;
-  --border-radius: 4px;
-  --box-shadow: none;
-  text-transform: capitalize;
+  padding: 0 15px; /* Ajusta el padding de los lados */
 }

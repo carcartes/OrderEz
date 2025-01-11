@@ -1,0 +1,51 @@
+/* Estilo para el botón de cerrar */
+.close-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* Título "Formas de pago" */
+.cart-title {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.cart-title h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Subtítulo "Métodos de pago" */
+.payment-methods-description p {
+  font-size: 14px;
+  color: #666; /* Gris */
+  text-align: left;
+  margin-top: 0px;
+}
+
+/* Lista de métodos de pago */
+.payment-methods {
+  margin-top: 0px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.payment-option img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.payment-option span {
+  font-size: 16px;
+  color: #333; /* Gris oscuro */
+}

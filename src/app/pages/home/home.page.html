@@ -1,42 +1,226 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+<ion-header >
+  <ion-toolbar color="white" class="header-toolbar ion-shadow">
+    <ion-title class="ion-text-center">
+      <ion-searchbar placeholder="Buscar productos" class="rounded-searchbar"></ion-searchbar>
+    </ion-title>
+    <ion-buttons slot="end" routerLink="/carrito">
+      <ion-icon name="cart" size="small" class="icon-cart"></ion-icon>
     </ion-buttons>
-    <ion-title class="ion-text-center">OrderEz</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-searchbar placeholder="Buscar productos"></ion-searchbar>
-
-  <div class="categories-container">
-    <ion-segment value="completos" (ionChange)="changeCategory($event)">
-      <ion-segment-button value="completos">
-        <ion-label>Completos</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="bebidas">
-        <ion-label>Bebidas</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+   <!-- Barra de categorías -->
+   <div class="category-bar">
+    <div class="category-item" routerLink="/categoria">
+      <img src="assets/hotdog.png" width="30" height="30">
+      <span class="caption">Completos</span>
+    </div>
+    <div class="category-item">
+      <img src="assets/pizza.png" width="30" height="30">
+      <span class="caption">Pizzas</span>
+    </div>
+    <div class="category-item">
+      <img src="assets/hamburger.png" width="30" height="30">
+      <span class="caption">Hamburguesas</span>
+    </div>
+    <div class="category-item">
+      <img src="assets/cola.png" width="30" height="30">
+      <span class="caption">Bebidas</span>
+    </div>
+    <div class="category-item">
+      <img src="assets/fries.png" width="30" height="30">
+      <span class="caption">Papas</span>
+    </div>
+    <div class="category-item">
+      <img src="assets/dessert.png" width="30" height="30">
+      <span class="caption">Postres</span>
+    </div>
+    <div class="category-item">
+      <img src="assets/sandwich.png" width="30" height="30">
+      <span class="caption">Sandwichs</span>
+    </div>
   </div>
 
-  <div class="products-container">
-    <ion-grid>
-      <ion-row *ngIf="selectedCategory === 'completos' || selectedCategory === 'bebidas'">
-        <ion-col size="12" *ngFor="let product of selectedProducts">
-          <div class="product-item">
-            <ion-img [src]="product.image" class="product-image"></ion-img>
-            <div class="product-info">
-              <h3>{{ product.name }}</h3>
-              <p>${{ product.price }}</p>
-            </div>
-            <ion-button size="small" fill="clear" class="add-button">
-              <ion-icon name="add-circle-outline"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <!-- Sección de productos -->
+  <div class="productos-categoria">
+    <div class="categoria-header">
+      <h2>Completos Favoritos</h2>
+      <ion-button fill="clear" class="flecha-derecha" routerLink="/categoria">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="productos-scroll">
+      <div class="producto-card">
+        <img src="assets/italiano.webp" alt="Completo Italiano" class="producto-imagen" routerLink="/producto">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,500</strong></p>
+          <p class="nombre-producto">Completo Italiano</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,500</strong></p>
+          <p class="nombre-producto">Completo Italiano</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,500</strong></p>
+          <p class="nombre-producto">Completo Italiano</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,500</strong></p>
+          <p class="nombre-producto">Completo Italiano</p>
+        </div>
+      </div>
+
+      <!-- Agrega más productos aquí -->
+    </div>
+  </div>
+
+  <div class="productos-categoria">
+    <div class="categoria-header">
+      <h2>Bebidas Favoritas</h2>
+      <ion-button fill="clear" class="flecha-derecha" routerLink="/completos">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="productos-scroll">
+      <div class="producto-card">
+        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,000</strong></p>
+          <p class="nombre-producto">Coca-Cola 250ml</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,000</strong></p>
+          <p class="nombre-producto">Coca-Cola 250ml</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,000</strong></p>
+          <p class="nombre-producto">Coca-Cola 250ml</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,000</strong></p>
+          <p class="nombre-producto">Coca-Cola 250ml</p>
+        </div>
+      </div>
+
+      <!-- Agrega más productos aquí -->
+    </div>
+  </div>
+
+  <div class="productos-categoria">
+    <div class="categoria-header">
+      <h2>Pizzas Favoritas</h2>
+      <ion-button fill="clear" class="flecha-derecha" routerLink="/completos">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="productos-scroll">
+      <div class="producto-card">
+        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,000</strong></p>
+          <p class="nombre-producto">Pizza concha y toro</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,500</strong></p>
+          <p class="nombre-producto">Pizza concha y toro</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,500</strong></p>
+          <p class="nombre-producto">Pizza concha y toro</p>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP 2,500</strong></p>
+          <p class="nombre-producto">Pizza concha y toro</p>
+        </div>
+      </div>
+
+      <!-- Agrega más productos aquí -->
+    </div>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="white" class="footer-toolbar ion-shadow">
+    <ion-buttons class="footer-buttons" routerLink="/home" >
+      <ion-icon name="home" size="small"></ion-icon>
+      <span class="caption">Inicio</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+      <ion-icon name="albums" size="small"></ion-icon>
+      <span class="caption">Categorías</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+      <ion-icon name="search" size="small"></ion-icon>
+      <span class="caption">Buscar</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/mis-pedidos" >
+      <ion-icon name="receipt" size="small"></ion-icon>
+      <span class="caption">Órdenes</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/perfil" >
+      <ion-icon name="person" size="small"></ion-icon>
+      <span class="caption">Perfil</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+

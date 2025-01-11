@@ -7,4 +7,28 @@ ion-item {
   }
   
 
+  .footer-buttons {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px; /* Espacio entre los botones */
+  }
+  
+  .caption {
+    display: block;
+    font-size: 12px;
+    color: #505050; /* Gris oscuro */
+  }
+  
+  .footer-toolbar {
+    display: flex;
+    justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
+    align-items: center;
+    padding: 0 15px; /* Ajusta el padding de los lados */
+  }
+
+  .ion-text-left h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }
   

@@ -1,0 +1,121 @@
+<ion-header >
+  <ion-toolbar color="white" class="header-toolbar ion-shadow">
+    <ion-title class="ion-text-center">
+      <ion-searchbar placeholder="Buscar productos" class="rounded-searchbar"></ion-searchbar>
+    </ion-title>
+    <ion-buttons slot="end" routerLink="/carrito">
+      <ion-icon name="cart" size="small" class="icon-cart"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Título de la sección -->
+  <div class="categories-title">
+    <h2><b>Categorías</b></h2>
+  </div>
+
+  <!-- Contenedor de las categorías -->
+  <ion-grid>
+    <ion-row>
+      <!-- Completos -->
+      <ion-col size="6">
+        <div class="category">
+          <img src="assets/completos.jpg" alt="Completos" class="category-image" routerLink="/categoria">
+          <div class="category-name">Completos</div>
+        </div>
+      </ion-col>
+      
+      <!-- Hamburguesas -->
+      <ion-col size="6">
+        <div class="category">
+          <img src="assets/hamburguesas.webp" alt="Hamburguesas" class="category-image">
+          <div class="category-name">Hamburguesas</div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <!-- Sandwiches -->
+      <ion-col size="6">
+        <div class="category">
+          <img src="assets/sandwiches.webp" alt="Sandwiches" class="category-image">
+          <div class="category-name">Sandwiches</div>
+        </div>
+      </ion-col>
+      
+      <!-- Pizzas -->
+      <ion-col size="6">
+        <div class="category">
+          <img src="assets/pizzas.webp" alt="Pizzas" class="category-image">
+          <div class="category-name">Pizzas</div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Otras categorías pueden seguir el mismo patrón -->
+    <ion-row>
+      <ion-col size="6">
+        <div class="category">
+          <img src="assets/postres.jpg" alt="Postres" class="category-image">
+          <div class="category-name">Postres</div>
+        </div>
+      </ion-col>
+      
+      <ion-col size="6">
+        <div class="category">
+          <img src="assets/bebidas.jpg" alt="Bebidas" class="category-image">
+          <div class="category-name">Bebidas</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <div class="category">
+          <img src="assets/papass.jpg" alt="Papas" class="category-image">
+          <div class="category-name">Papas</div>
+        </div>
+      </ion-col>
+      
+      <ion-col size="6">
+        <div class="category">
+        
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="white" class="footer-toolbar ion-shadow">
+    <ion-buttons class="footer-buttons" routerLink="/home" >
+      <ion-icon name="home" size="small"></ion-icon>
+      <span class="caption">Inicio</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+      <ion-icon name="albums" size="small"></ion-icon>
+      <span class="caption">Categorías</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+      <ion-icon name="search" size="small"></ion-icon>
+      <span class="caption">Buscar</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/mis-pedidos" >
+      <ion-icon name="receipt" size="small"></ion-icon>
+      <span class="caption">Órdenes</span>
+    </ion-buttons>
+
+    <ion-buttons class="footer-buttons" routerLink="/perfil" >
+      <ion-icon name="person" size="small"></ion-icon>
+      <span class="caption">Perfil</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+

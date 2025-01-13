@@ -1,5 +1,3 @@
-
-
 <ion-content class="ion-padding">
   <div class="login-container">
     <ion-card>
@@ -9,25 +7,27 @@
       </ion-card-header>
 
       <ion-card-content>
-        <form>
+        <form (submit)="onLogin()">
           <ion-item>
             <ion-label position="floating">Correo Electrónico</ion-label>
-            <ion-input type="email" placeholder="tuemail@ejemplo.com"></ion-input>
+            <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
-            <ion-input type="password" placeholder="******"></ion-input>
+            <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
           </ion-item>
 
-          <ion-button expand="block" color="dark" class="ion-margin-top" [routerLink]="['/qr']">Iniciar Sesión</ion-button>
+          <ion-button expand="block" color="dark" class="ion-margin-top" type="submit">
+            Iniciar Sesión
+          </ion-button>
         </form>
 
         <div class="register-link">
           <p>¿No tienes cuenta? <a [routerLink]="['/register']">Regístrate aquí</a></p>
         </div>
         <div class="register-link">
-          <p>¿Olvidaste tu contraseña? <a [routerLink]="['/contra']">Click aqui.</a></p>
+          <p>¿Olvidaste tu contraseña? <a [routerLink]="['/contra']">Click aquí</a></p>
         </div>
       </ion-card-content>
     </ion-card>

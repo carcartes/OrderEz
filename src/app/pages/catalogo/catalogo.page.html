@@ -9,34 +9,20 @@
     <button class="btn-add-product" routerLink="/add-producto">+ Nuevo Producto</button>
   </div>
 
-   <!-- Botón para filtrar productos -->
-   <div class="filter-button ion-padding">
-    <button class="btn-filter">Filtrar</button>
+  <!-- Botón para filtrar productos -->
+  <div class="filter-button ion-padding">
+    <button class="btn-filter" (click)="openFilterModal()">Filtrar</button>
   </div>
 
   <!-- Lista de productos -->
   <div class="product-list">
     <!-- Producto ejemplo -->
-    <div class="product-item ion-padding">
-      <img src="assets/coca-cola.jpg" alt="Producto" class="product-image" />
+    <div class="product-item ion-padding" *ngFor="let product of filteredProducts">
+      <img [src]="product.image" alt="Producto" class="product-image" />
       <div class="product-info">
-        <h3 class="product-name">Coca-Cola</h3>
-        <p class="product-price">CLP 1,500</p>
-        <p class="product-price">Agotado</p>
-      </div>
-      <div class="product-actions">
-        <button class="btn-edit" routerLink="/edit-producto">Editar</button>
-        <button class="btn-delete">Eliminar</button>
-      </div>
-    </div>
-
-    <!-- Repetir más productos según sea necesario -->
-    <div class="product-item ion-padding">
-      <img src="assets/italiano.webp" alt="Producto" class="product-image" />
-      <div class="product-info">
-        <h3 class="product-name">Completo Italiano</h3>
-        <p class="product-price">CLP 2,500</p>
-        <p class="product-price">Disponible</p>
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-price">{{ product.price }}</p>
+        <p class="product-status">{{ product.status }}</p>
       </div>
       <div class="product-actions">
         <button class="btn-edit" routerLink="/edit-producto">Editar</button>
@@ -46,22 +32,67 @@
   </div>
 </ion-content>
 
+<!-- Modal para filtrar productos -->
+<ion-modal [isOpen]="isFilterModalOpen" (didDismiss)="onFilterModalDismiss()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Filtrar por Categoría</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeFilterModal()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-radio-group [(ngModel)]="selectedCategory">
+          <ion-item>
+            <ion-label>Completos</ion-label>
+            <ion-radio slot="start" value="completos"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hamburguesas</ion-label>
+            <ion-radio slot="start" value="hamburguesas"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pizzas</ion-label>
+            <ion-radio slot="start" value="pizzas"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Sándwiches</ion-label>
+            <ion-radio slot="start" value="sandwiches"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Bebidas</ion-label>
+            <ion-radio slot="start" value="bebidas"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Postres</ion-label>
+            <ion-radio slot="start" value="postres"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-button expand="block" (click)="applyFilter()">Aplicar Filtro</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
 <ion-footer>
   <ion-toolbar color="white" class="footer-toolbar ion-shadow">
-    <ion-buttons class="footer-buttons" routerLink="/home" >
+    <ion-buttons class="footer-buttons" routerLink="/home">
       <ion-icon name="home" size="small"></ion-icon>
       <span class="caption">Inicio</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/productos" >
+    <ion-buttons class="footer-buttons" routerLink="/productos">
       <ion-icon name="albums" size="small"></ion-icon>
       <span class="caption">Productos</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/pedidos-adm" >
+    <ion-buttons class="footer-buttons" routerLink="/pedidos-adm">
       <ion-icon name="search" size="small"></ion-icon>
       <span class="caption">Pedidos</span>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
-

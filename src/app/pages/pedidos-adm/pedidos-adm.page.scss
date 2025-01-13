@@ -72,3 +72,29 @@
     color: #000;
   }
   
+  .order-actions {
+    position: relative;
+  }
+  
+  .btn-view-orders {
+    position: relative;
+    padding-right: 40px; /* Ajusta según el diseño */
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -5px; /* Ajusta según el diseño */
+    right: -10px; /* Ajusta según el diseño */
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  

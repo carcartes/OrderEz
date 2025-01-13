@@ -1,16 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone : false
+  standalone: false
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+  email: string = '';
+  password: string = '';
 
-  constructor() { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {
+  // Método para manejar el inicio de sesión
+  async onLogin() {
+    if (this.email && this.password) {
+      await this.authService.login(this.email, this.password);
+    } else {
+      alert('Por favor, completa todos los campos');
+    }
   }
-
 }

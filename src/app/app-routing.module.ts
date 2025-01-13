@@ -22,10 +22,7 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
-  {
-    path: 'administracion',
-    loadChildren: () => import('./pages/administracion/administracion.module').then( m => m.AdministracionPageModule)
-  },
+
   {
     path: 'detalle-mesa',
     loadChildren: () => import('./pages/detalle-mesa/detalle-mesa.module').then( m => m.DetalleMesaPageModule)
@@ -38,10 +35,7 @@ const routes: Routes = [
     path: 'qr',
     loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
   },
-  {
-    path: 'boleta',
-    loadChildren: () => import('./pages/boleta/boleta.module').then( m => m.BoletaPageModule)
-  },
+
   {
     path: 'buscar',
     loadChildren: () => import('./pages/buscar/buscar.module').then( m => m.BuscarPageModule)

@@ -1,13 +1,10 @@
-<ion-header >
+<ion-header>
   <ion-toolbar color="white" class="header-toolbar ion-shadow">
     <ion-title class="ion-text-left">
       <h2>Perfil</h2>
     </ion-title>
     <ion-buttons slot="end" routerLink="/carrito">
       <ion-icon name="cart" size="small" class="icon-cart"></ion-icon>
-    </ion-buttons>
-    <ion-buttons slot="end" routerLink="/catalogo">
-      <ion-icon name="settings-outline" size="small" class="settings-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -24,31 +21,37 @@
   </ion-item>
 
   <ion-button expand="full" color="dark" class="continue-button" routerLink="/edit-perfil">Editar</ion-button>
+
+  <!-- Separador entre los botones -->
+  <br><br><br><br><br><br><br><br>
+
+  <ion-button expand="full" color="dark" class="continue-button" routerLink="/catalogo">Administración</ion-button>
+  <ion-button expand="full" color="dark" class="continue-button" routerLink="/">Cerrar Sesión</ion-button>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color="white" class="footer-toolbar ion-shadow">
-    <ion-buttons class="footer-buttons" routerLink="/home" >
+    <ion-buttons class="footer-buttons" routerLink="/home">
       <ion-icon name="home" size="small"></ion-icon>
       <span class="caption">Inicio</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/categorias" >
+    <ion-buttons class="footer-buttons" routerLink="/categorias">
       <ion-icon name="albums" size="small"></ion-icon>
       <span class="caption">Categorías</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+    <ion-buttons class="footer-buttons" routerLink="/buscar">
       <ion-icon name="search" size="small"></ion-icon>
       <span class="caption">Buscar</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/mis-pedidos" >
+    <ion-buttons class="footer-buttons" routerLink="/mis-pedidos">
       <ion-icon name="receipt" size="small"></ion-icon>
       <span class="caption">Órdenes</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/perfil" >
+    <ion-buttons class="footer-buttons" routerLink="/perfil">
       <ion-icon name="person" size="small"></ion-icon>
       <span class="caption">Perfil</span>
     </ion-buttons>

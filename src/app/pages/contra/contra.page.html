@@ -1,0 +1,52 @@
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Recuperar Contraseña</ion-card-title>
+        <ion-card-subtitle>Por favor, ingresa tu correo para recuperar tu contraseña</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form>
+          <!-- Campo de correo -->
+          <ion-item>
+            <ion-label position="floating">Correo Electrónico</ion-label>
+            <ion-input [(ngModel)]="correo" name="correo" type="text" placeholder="Ingresa algo aquí"></ion-input>
+          </ion-item>
+
+          <!-- Botón para enviar código -->
+          <ion-button expand="block" color="dark" class="ion-margin-top" (click)="enviarCodigo()">
+            Enviar código
+          </ion-button>
+
+          <!-- Campo para ingresar el código, solo visible después de enviar -->
+          <ion-item *ngIf="mostrarCampoCodigo">
+            <ion-label position="floating" [color]="codigoIngresado ? 'success' : ''">Código</ion-label>
+            <ion-input [(ngModel)]="codigo" name="codigo" type="text" placeholder="Ingresa algo aquí" (ionInput)="onCodigoChange()"></ion-input>
+          </ion-item>
+
+          <!-- Campos de nueva contraseña y botón de cambiar, solo después de ingresar el código -->
+          <div *ngIf="mostrarCamposContrasena">
+            <ion-item>
+              <ion-label position="floating">Nueva Contraseña</ion-label>
+              <ion-input [(ngModel)]="nuevaContrasena" name="nuevaContrasena" type="password" placeholder="Ingresa la nueva contraseña"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Confirmar Contraseña</ion-label>
+              <ion-input [(ngModel)]="confirmarContrasena" name="confirmarContrasena" type="password" placeholder="Ingresa la nueva contraseña nuevamente"></ion-input>
+            </ion-item>
+
+            <ion-button expand="block" color="dark" class="ion-margin-top" (click)="cambiarContrasena()">
+              Cambiar Contraseña
+            </ion-button>
+          </div>
+        </form>
+
+        <div class="register-link">
+          <p>Volver al inicio <a [routerLink]="['/']">Click aquí</a></p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

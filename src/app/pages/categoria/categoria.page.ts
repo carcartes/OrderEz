@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-categoria',
@@ -6,11 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categoria.page.scss'],
   standalone: false
 })
-export class CategoriaPage implements OnInit {
+export class CategoriaPage {
 
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor() {}
+
 
 }

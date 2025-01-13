@@ -12,6 +12,7 @@
   }
   
   .footer-toolbar {
+    text-align: center;
     display: flex;
     justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
     align-items: center;
@@ -63,5 +64,11 @@
   
   .btn-view-orders:hover {
     background-color: #0056b3; /* Oscurecer al pasar el cursor */
+  }
+
+  .orders-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
   }
   

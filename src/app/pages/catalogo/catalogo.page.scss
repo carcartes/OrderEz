@@ -10,8 +10,10 @@
     font-size: 12px;
     color: #505050; /* Gris oscuro */
   }
+
   
   .footer-toolbar {
+    text-align: center;
     display: flex;
     justify-content: space-evenly; /* Distribuye los elementos de manera equitativa */
     align-items: center;
@@ -23,7 +25,7 @@
     font-size: 24px;
     font-weight: bold;
     color: #000;
-  }
+  } 
   
   .add-product-button .btn-add-product {
     width: 100%;

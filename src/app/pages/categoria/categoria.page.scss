@@ -29,12 +29,18 @@
   /* Botón de regreso al Home */
   .back-button {
     position: fixed;
-    z-index: 1000;
-    top: 10px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 0.3); /* Gris transparente */
-    border-radius: 50%;
-    padding: 2px;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  width: 40px; /* Ancho fijo */
+  height: 40px; /* Alto fijo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Elimina el padding adicional */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Agrega sombra para mejorar la estética */
+    
   }
   
   .back-button ion-icon {

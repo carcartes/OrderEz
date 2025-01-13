@@ -86,6 +86,10 @@ const routes: Routes = [
     path: 'edit-perfil',
     loadChildren: () => import('./pages/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
   },
+  {
+    path: 'contra',
+    loadChildren: () => import('./pages/contra/contra.module').then( m => m.ContraPageModule)
+  },
 
 
 

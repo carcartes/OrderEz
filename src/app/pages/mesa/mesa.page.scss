@@ -24,13 +24,7 @@ ion-segment {
   margin: 15px 0;
 }
 
-ion-segment-button {
-  --color: #000;
-  --color-checked: #fff;
-  --background: #f0f0f0;
-  --background-checked: #007bff;
-  --border-color: #ddd;
-}
+
 
 /* Título de secciones */
 .section-title {
@@ -77,18 +71,3 @@ ion-segment-button {
   gap: 10px;
 }
 
-.btn-action {
-  padding: 5px 10px;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #f0f0f0;
-  color: #333;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-action:hover {
-  background-color: #007bff;
-  color: #fff;
-}

@@ -12,27 +12,27 @@
 <ion-content class="ion-padding">
    <!-- Barra de categorías -->
    <div class="category-bar">
-    <div class="category-item" routerLink="/categoria">
+    <div class="category-item" (click)="navigateToCategory('Pastas')">
       <img src="assets/hotdog.png" width="30" height="30">
       <span class="caption">Pastas</span>
     </div>
-    <div class="category-item">
+    <div class="category-item" (click)="navigateToCategory('Pizzas')">
       <img src="assets/pizza.png" width="30" height="30">
       <span class="caption">Pizzas</span>
     </div>
-    <div class="category-item">
+    <div class="category-item" (click)="navigateToCategory('Appetizers')">
       <img src="assets/hamburger.png" width="30" height="30">
       <span class="caption">Appetizers</span>
     </div>
-    <div class="category-item">
-      <img src="assets/cola.png" width="30" height="30">
-      <span class="caption">Bebidas</span>
+    <div class="category-item" (click)="navigateToCategory('Ensaladas')">
+      <img src="assets/hamburger.png" width="30" height="30">
+      <span class="caption">Ensaladas</span>
     </div>
-    <div class="category-item">
+    <div class="category-item" (click)="navigateToCategory('Postres')">
       <img src="assets/dessert.png" width="30" height="30">
       <span class="caption">Postres</span>
     </div>
-    <div class="category-item">
+    <div class="category-item" (click)="navigateToCategory('Sandwiches')">
       <img src="assets/sandwich.png" width="30" height="30">
       <span class="caption">Sandwiches</span>
     </div>

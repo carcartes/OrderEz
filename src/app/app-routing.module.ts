@@ -41,11 +41,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/buscar/buscar.module').then( m => m.BuscarPageModule)
   },
   {
-    path: 'categoria',
+    path: 'categoria/:name',
     loadChildren: () => import('./pages/categoria/categoria.module').then( m => m.CategoriaPageModule)
   },
   {
-    path: 'producto',
+    path: 'producto/:name',
     loadChildren: () => import('./pages/producto/producto.module').then( m => m.ProductoPageModule)
   },
   {

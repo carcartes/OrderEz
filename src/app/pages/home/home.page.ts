@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../../services/producto.service';
 import { Product } from '../../models/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage implements OnInit {
   pastas: Product[] = [];
   appetizers: Product[] = [];
 
-  constructor(private productoService: ProductoService) {}
+  constructor(private productoService: ProductoService, private router: Router) {}
 
   ngOnInit() {
     this.loadPizzas();
@@ -52,5 +53,9 @@ export class HomePage implements OnInit {
         console.error('Error al cargar los appetizers:', error);
       }
     );
+  }
+
+  navigateToCategory(category: string) {
+    this.router.navigate(['/categoria', category]);
   }
 }

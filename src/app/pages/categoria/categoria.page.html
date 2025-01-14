@@ -1,136 +1,51 @@
 <ion-content>
-  <!-- Banner -->
   <div class="banner">
-    <img src="assets/completos.jpg" alt="Banner de Completos" />
+    <img src="assets/completos.jpg" alt="Banner de {{ categoryName }}" />
   </div>
 
-  <!-- Botón de regreso al Home -->
   <ion-button class="back-button" size="small" fill="clear" routerLink="/home">
     <ion-icon name="arrow-back" color="light"></ion-icon>
   </ion-button>
 
-  <!-- Nombre de la categoría -->
   <div class="category-title">
-    <h2>Completos</h2>
+    <h2>{{ categoryName }}</h2>
   </div>
 
-  <!-- Resto de la página (puedes agregar productos o contenido adicional aquí) -->
-  <div class="content">
-    <!-- Sección de productos -->
   <div class="productos-categoria">
     <div class="categoria-header">
-      <h2>Completos Destacados</h2>
+      <h2>{{ categoryName }} Destacados</h2>
     </div>
 
     <div class="productos-scroll">
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Italiano" class="producto-imagen" routerLink="/producto">
+      <div class="producto-card" *ngFor="let producto of destacados">
+        <img [src]="producto.image" [alt]="producto.name" class="producto-imagen" [routerLink]="['/producto', producto.id]">
         <button class="btn-agregar">+</button>
         <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
+          <p class="precio"><strong>CLP {{ producto.price }}</strong></p>
+          <p class="nombre-producto">{{ producto.name }}</p>
         </div>
       </div>
-
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
-        </div>
-      </div>
-
-      <!-- Agrega más productos aquí -->
     </div>
   </div>
-  </div>
 
-  <!-- Título de la sección -->
-  <div class="categoria-header">
-    <h2>Todos los completos disponibles</h2>
-  </div>
-
-  <!-- Lista de productos -->
-  <div class="product-list">
-    <div class="product-item">
-      <div class="product-info">
-        <h4 class="product-name">Completo Italiano</h4>
-        <p class="product-price">CLP 2,500</p>
-      </div>
-      <div class="product-image-container">
-        <img src="assets/italiano.webp" alt="Completo Italiano" class="product-image" routerLink="/producto">
-        <button class="add-to-cart-button">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
-      </div>
+  <!-- Todos los productos -->
+  <div class="productos-categoria">
+    <div class="categoria-header">
+      <h2>Todos los {{ categoryName }}</h2>
     </div>
 
-    <!-- Repite este bloque para más productos -->
-    <div class="product-item">
-      <div class="product-info">
-        <h4 class="product-name">Completo Dinámico</h4>
-        <p class="product-price">CLP 2,800</p>
-      </div>
-      <div class="product-image-container">
-        <img src="assets/italiano.webp" alt="Completo Dinámico" class="product-image">
-        <button class="add-to-cart-button">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
-      </div>
-    </div>
-    <div class="product-item">
-      <div class="product-info">
-        <h4 class="product-name">Completo Dinámico</h4>
-        <p class="product-price">CLP 2,800</p>
-      </div>
-      <div class="product-image-container">
-        <img src="assets/italiano.webp" alt="Completo Dinámico" class="product-image">
-        <button class="add-to-cart-button">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
-      </div>
-    </div>
-    <div class="product-item">
-      <div class="product-info">
-        <h4 class="product-name">Completo Dinámico</h4>
-        <p class="product-price">CLP 2,800</p>
-      </div>
-      <div class="product-image-container">
-        <img src="assets/italiano.webp" alt="Completo Dinámico" class="product-image">
-        <button class="add-to-cart-button">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
-      </div>
-    </div>
-    <div class="product-item">
-      <div class="product-info">
-        <h4 class="product-name">Completo Dinámico</h4>
-        <p class="product-price">CLP 2,800</p>
-      </div>
-      <div class="product-image-container">
-        <img src="assets/italiano.webp" alt="Completo Dinámico" class="product-image">
-        <button class="add-to-cart-button">
-          <ion-icon name="add-outline"></ion-icon>
-        </button>
+    <div class="product-list">
+      <div class="product-item" *ngFor="let producto of todos">
+        <div class="product-info">
+          <h4 class="product-name">{{ producto.name }}</h4>
+          <p class="product-price">CLP {{ producto.price }}</p>
+        </div>
+        <div class="product-image-container">
+          <img [src]="producto.image" [alt]="producto.name" class="product-image" [routerLink]="['/producto', producto.id]">
+          <button class="add-to-cart-button">
+            <ion-icon name="add-outline"></ion-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>

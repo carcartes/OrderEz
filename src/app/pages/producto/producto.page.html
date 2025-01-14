@@ -13,8 +13,8 @@
   </div>
 
   <ion-toolbar color="white" class="footer-toolbar">
-    <ion-button expand="full" color="dark" class="continue-button" routerLink="/carrito">
-      Añadir 1 al carrito . CLP {{ producto?.price }}
+    <ion-button *ngIf="producto" expand="full" color="dark" class="continue-button" (click)="agregarAlCarrito(producto)">
+      Añadir 1 al carrito . CLP {{ producto.price }}
     </ion-button>
   </ion-toolbar>
 </ion-content>

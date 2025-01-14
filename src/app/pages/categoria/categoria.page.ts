@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
+import { CarritoService } from '../../services/carrito.service';  // Importa el CarritoService
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -16,7 +17,8 @@ export class CategoriaPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private carritoService: CarritoService  // Inyecta el CarritoService
   ) {}
 
   ngOnInit() {
@@ -34,5 +36,10 @@ export class CategoriaPage implements OnInit {
         console.error('Error al cargar los productos:', error);
       }
     );
+  }
+
+  agregarAlCarrito(producto: Product) {
+    const quantity = 1;  // Puedes ajustar la cantidad según lo que necesites
+    this.carritoService.agregarAlCarrito(producto, quantity);
   }
 }

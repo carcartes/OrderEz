@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from './auth.service';
 import { ProductoService } from './producto.service';
 import { Product } from '../models/product.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 // Exporta la interfaz CarritoProduct para poder usarla en otros archivos
 export interface CarritoProduct extends Product {
@@ -19,6 +19,8 @@ interface CarritoData {
   providedIn: 'root'
 })
 export class CarritoService {
+  private carritoSubject: BehaviorSubject<CarritoProduct[]> = new BehaviorSubject<CarritoProduct[]>([]);  // Usamos BehaviorSubject
+  carrito$ = this.carritoSubject.asObservable();  // Observable para que los componentes se suscriban
 
   constructor(
     private firestore: AngularFirestore,
@@ -53,6 +55,7 @@ export class CarritoService {
                 carritoData.products.push(newProduct);
               }
               carritoRef.update({ products: carritoData.products }).then(() => {
+                this.carritoSubject.next(carritoData.products);  // Actualiza el estado local del carrito
                 console.log('Producto agregado o cantidad actualizada en el carrito');
               }).catch((error) => {
                 console.error('Error al actualizar el carrito:', error);
@@ -65,6 +68,7 @@ export class CarritoService {
               userId: userId,
               products: [newProduct] // Crear carrito con el producto y cantidad
             }).then(() => {
+              this.carritoSubject.next([newProduct]);  // Actualiza el estado local del carrito
               console.log('Carrito creado y producto agregado');
             }).catch((error) => {
               console.error('Error al crear el carrito:', error);
@@ -79,31 +83,30 @@ export class CarritoService {
 
   // Obtener los productos del carrito, incluyendo la cantidad
   getCarritoProductos(): Observable<CarritoProduct[]> {  // Cambiado a CarritoProduct[]
-    return new Observable((observer) => {
-      this.authService.getUserProfile().subscribe(user => {
-        if (user) {
-          const userId = user.uid;
-          const carritoRef = this.firestore.collection('carritos').doc(userId);
+    this.authService.getUserProfile().subscribe(user => {
+      if (user) {
+        const userId = user.uid;
+        const carritoRef = this.firestore.collection('carritos').doc(userId);
 
-          carritoRef.get().toPromise().then(doc => {
-            if (doc && doc.exists) {
-              const carritoData = doc.data() as CarritoData;
-              if (carritoData && carritoData.products) {
-                observer.next(carritoData.products);  // Enviar los productos del carrito
-              } else {
-                observer.next([]);  // Si no hay productos, enviar un array vacío
-              }
+        carritoRef.get().toPromise().then(doc => {
+          if (doc && doc.exists) {
+            const carritoData = doc.data() as CarritoData;
+            if (carritoData && carritoData.products) {
+              this.carritoSubject.next(carritoData.products);  // Actualiza el estado local del carrito
             } else {
-              observer.next([]);  // Si no existe el carrito, enviar un array vacío
+              this.carritoSubject.next([]);  // Si no hay productos, actualizar a array vacío
             }
-          }).catch(error => {
-            observer.error(error);
-          });
-        } else {
-          observer.next([]);  // Si no hay usuario, enviar un array vacío
-        }
-      });
+          } else {
+            this.carritoSubject.next([]);  // Si no existe el carrito, actualizar a array vacío
+          }
+        }).catch(error => {
+          console.error('Error al acceder a los productos del carrito:', error);
+        });
+      } else {
+        this.carritoSubject.next([]);  // Si no hay usuario, actualizar a array vacío
+      }
     });
+    return this.carrito$;  // Retorna el observable
   }
 
   // Actualizar la cantidad de un producto en el carrito
@@ -120,7 +123,9 @@ export class CarritoService {
               const productIndex = carritoData.products.findIndex(p => p.id === product.id);
               if (productIndex !== -1) {
                 carritoData.products[productIndex] = product;  // Actualizar el producto con la nueva cantidad
-                carritoRef.update({ products: carritoData.products });
+                carritoRef.update({ products: carritoData.products }).then(() => {
+                  this.carritoSubject.next(carritoData.products);  // Actualiza el estado local del carrito
+                });
               }
             }
           }
@@ -141,7 +146,9 @@ export class CarritoService {
             const carritoData = doc.data() as CarritoData;
             if (carritoData && carritoData.products) {
               const updatedProducts = carritoData.products.filter(p => p.id !== product.id);
-              carritoRef.update({ products: updatedProducts });  // Eliminar el producto
+              carritoRef.update({ products: updatedProducts }).then(() => {
+                this.carritoSubject.next(updatedProducts);  // Actualiza el estado local del carrito
+              });  // Eliminar el producto
             }
           }
         });

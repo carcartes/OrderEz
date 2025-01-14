@@ -19,7 +19,7 @@
     <div class="productos-scroll">
       <div class="producto-card" *ngFor="let producto of destacados">
         <img [src]="producto.image" [alt]="producto.name" class="producto-imagen" [routerLink]="['/producto', producto.id]">
-        <button class="btn-agregar">+</button>
+        <button class="btn-agregar" (click)="agregarAlCarrito(producto)">+</button>
         <div class="producto-info">
           <p class="precio"><strong>CLP {{ producto.price }}</strong></p>
           <p class="nombre-producto">{{ producto.name }}</p>
@@ -42,7 +42,7 @@
         </div>
         <div class="product-image-container">
           <img [src]="producto.image" [alt]="producto.name" class="product-image" [routerLink]="['/producto', producto.id]">
-          <button class="add-to-cart-button">
+          <button class="add-to-cart-button" (click)="agregarAlCarrito(producto)">
             <ion-icon name="add-outline"></ion-icon>
           </button>
         </div>

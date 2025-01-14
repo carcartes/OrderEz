@@ -69,7 +69,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/mesa/mesa.module').then( m => m.MesaPageModule)
   },
   {
-    path: 'edit-producto',
+    path: 'edit-producto/:id',
     loadChildren: () => import('./pages/edit-producto/edit-producto.module').then( m => m.EditProductoPageModule)
   },
   {

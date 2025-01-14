@@ -3,33 +3,41 @@
   <!-- Header con botón de cerrar y título -->
   <div class="header-toolbar">
     <ion-icon name="close" class="back-icon" (click)="goToCatalogo()"></ion-icon>
-    <h2 class="header-title">Agregar Producto</h2>
+    <h2 class="header-title">Añadir Producto</h2>
   </div>
 
-  <!-- Formulario de agregar producto -->
   <div class="form-container">
-    <!-- Campo: Nombre -->
     <div class="input-group">
       <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" placeholder="Ej: Sprite" />
+      <input type="text" id="nombre" [(ngModel)]="productName" placeholder="Ej: Pizza" />
     </div>
 
-    <!-- Campo: Imagen -->
     <div class="input-group">
-      <label for="imagen">URL de la Imagen</label>
-      <input type="text" id="imagen" placeholder="Ej: https://example.com/image.jpg" />
+      <label for="imagen">Sube la imagen</label>
+      <input type="file" id="imagen" (change)="onImageChange($event)" />
     </div>
 
-    <!-- Campo: Categoría -->
     <div class="input-group">
-      <label for="categoria">Categoría</label>
-      <input type="text" id="categoria" placeholder="Ej: Refrescos" />
+      <label for="precio">Precio</label>
+      <input type="number" id="precio" [(ngModel)]="productPrice" placeholder="Ej: 1000" />
+    </div>
+
+    <div class="input-group">
+      <ion-label>Categoría</ion-label>
+    <ion-select [(ngModel)]="productCategory">
+      <ion-select-option *ngFor="let category of categories" [value]="category">{{ category }}</ion-select-option>
+    </ion-select>
+    </div>
+
+    <div class="input-group">
+      <ion-select [(ngModel)]="productStatus">
+        <ion-select-option *ngFor="let status of statuses" [value]="status">{{ status }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="button-container">
+      <button class="btn-add-product" (click)="addProduct()">Agregar Producto</button>
     </div>
   </div>
-
-  <!-- Botón para agregar producto -->
-  <div class="button-container">
-    <button class="btn-add-product" (click)="goToCatalogo()">Agregar</button>
-  </div>
-
 </ion-content>
+

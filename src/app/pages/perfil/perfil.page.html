@@ -12,7 +12,7 @@
 <ion-content class="ion-padding">
   <ion-item>
     <ion-label position="stacked">Nombre</ion-label>
-    <ion-input [value]="nombre" disabled></ion-input>
+    <ion-input [value]="firstName + ' ' + lastName" disabled></ion-input>
   </ion-item>
 
   <ion-item>
@@ -26,7 +26,8 @@
   <br><br><br><br><br><br><br><br>
 
   <ion-button expand="full" color="dark" class="continue-button" routerLink="/catalogo">Administración</ion-button>
-  <ion-button expand="full" color="dark" class="continue-button" routerLink="/">Cerrar Sesión</ion-button>
+  <ion-button expand="full" color="dark" class="continue-button" (click)="logout()">Cerrar Sesión</ion-button>
+
 </ion-content>
 
 <ion-footer>

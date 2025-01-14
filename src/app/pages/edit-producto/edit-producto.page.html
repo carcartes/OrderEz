@@ -1,5 +1,4 @@
 <ion-content class="ion-padding">
-
   <!-- Header con botón de cerrar y título -->
   <div class="header-toolbar">
     <ion-icon name="close" class="back-icon" (click)="goToCatalogo()"></ion-icon>
@@ -11,29 +10,43 @@
     <!-- Campo: Nombre -->
     <div class="input-group">
       <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" placeholder="Ej: Coca-Cola" />
+      <input type="text" id="nombre" [(ngModel)]="product.name" placeholder="Ej: Coca-Cola" />
     </div>
 
     <!-- Campo: Imagen -->
     <div class="input-group">
       <label for="imagen">URL de la Imagen</label>
-      <input type="text" id="imagen" placeholder="Ej: https://example.com/image.jpg" />
+      <div class="image-container">
+        <input type="text" id="imagen" [(ngModel)]="product.image" placeholder="Ej: https://example.com/image.jpg" readonly />
+        <button class="btn-change-image" (click)="changeImage()">Cambiar Imagen</button>
+      </div>
     </div>
 
     <!-- Campo: Categoría -->
     <div class="input-group">
       <label for="categoria">Categoría</label>
-      <input type="text" id="categoria" placeholder="Ej: Bebidas" />
+      <ion-select [(ngModel)]="product.category">
+        <ion-select-option *ngFor="let category of categories" [value]="category">{{ category }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <!-- Campo: Precio -->
+    <div class="input-group">
+      <label for="precio">Precio</label>
+      <input type="number" id="precio" [(ngModel)]="product.price" placeholder="Ej: 1000" />
+    </div>
+
+    <!-- Campo: Estado -->
+    <div class="input-group">
+      <label for="estado">Estado</label>
+      <ion-select [(ngModel)]="product.status">
+        <ion-select-option *ngFor="let status of statuses" [value]="status">{{ status }}</ion-select-option>
+      </ion-select>
     </div>
   </div>
 
-  <!-- Botón para agregar producto -->
+  <!-- Botón para guardar los cambios -->
   <div class="button-container">
-    <button class="btn-add-product" (click)="goToCatalogo()">Modificar</button>
+    <button class="btn-add-product" (click)="saveProduct()">Modificar</button>
   </div>
-
-  <div class="button-container">
-    <button class="btn-add-product" (click)="goToCatalogo()">Marcar Agotado</button>
-  </div>
-
 </ion-content>

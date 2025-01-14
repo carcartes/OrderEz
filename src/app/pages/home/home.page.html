@@ -14,7 +14,7 @@
    <div class="category-bar">
     <div class="category-item" routerLink="/categoria">
       <img src="assets/hotdog.png" width="30" height="30">
-      <span class="caption">Completos</span>
+      <span class="caption">Pastas</span>
     </div>
     <div class="category-item">
       <img src="assets/pizza.png" width="30" height="30">
@@ -22,15 +22,11 @@
     </div>
     <div class="category-item">
       <img src="assets/hamburger.png" width="30" height="30">
-      <span class="caption">Hamburguesas</span>
+      <span class="caption">Appetizers</span>
     </div>
     <div class="category-item">
       <img src="assets/cola.png" width="30" height="30">
       <span class="caption">Bebidas</span>
-    </div>
-    <div class="category-item">
-      <img src="assets/fries.png" width="30" height="30">
-      <span class="caption">Papas</span>
     </div>
     <div class="category-item">
       <img src="assets/dessert.png" width="30" height="30">
@@ -38,157 +34,63 @@
     </div>
     <div class="category-item">
       <img src="assets/sandwich.png" width="30" height="30">
-      <span class="caption">Sandwichs</span>
-    </div>
-  </div>
-
-  <!-- Sección de productos -->
-  <div class="productos-categoria">
-    <div class="categoria-header">
-      <h2>Completos Favoritos</h2>
-      <ion-button fill="clear" class="flecha-derecha" routerLink="/categoria">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-    </div>
-
-    <div class="productos-scroll">
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Italiano" class="producto-imagen" routerLink="/producto">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/italiano.webp" alt="Completo Chacarero" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Completo Italiano</p>
-        </div>
-      </div>
-
-      <!-- Agrega más productos aquí -->
+      <span class="caption">Sandwiches</span>
     </div>
   </div>
 
   <div class="productos-categoria">
     <div class="categoria-header">
-      <h2>Bebidas Favoritas</h2>
-      <ion-button fill="clear" class="flecha-derecha" routerLink="/completos">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
+      <h2>Pastas Favoritas</h2>
     </div>
-
+  
     <div class="productos-scroll">
-      <div class="producto-card">
-        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
+      <div class="producto-card" *ngFor="let pasta of pastas">
+        <img [src]="pasta.image" [alt]="pasta.name" class="producto-imagen">
         <button class="btn-agregar">+</button>
         <div class="producto-info">
-          <p class="precio"><strong>CLP 2,000</strong></p>
-          <p class="nombre-producto">Coca-Cola 250ml</p>
+          <p class="precio"><strong>CLP {{ pasta.price }}</strong></p>
+          <p class="nombre-producto">{{ pasta.name }}</p>
         </div>
       </div>
-
-      <div class="producto-card">
-        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,000</strong></p>
-          <p class="nombre-producto">Coca-Cola 250ml</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,000</strong></p>
-          <p class="nombre-producto">Coca-Cola 250ml</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/coca-cola.jpg" alt="Coca-Cola" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,000</strong></p>
-          <p class="nombre-producto">Coca-Cola 250ml</p>
-        </div>
-      </div>
-
-      <!-- Agrega más productos aquí -->
     </div>
   </div>
-
+  
+  <div class="productos-categoria">
+    <div class="categoria-header">
+      <h2>Appetizers</h2>
+    </div>
+  
+    <div class="productos-scroll">
+      <div class="producto-card" *ngFor="let appetizer of appetizers">
+        <img [src]="appetizer.image" [alt]="appetizer.name" class="producto-imagen">
+        <button class="btn-agregar">+</button>
+        <div class="producto-info">
+          <p class="precio"><strong>CLP {{ appetizer.price }}</strong></p>
+          <p class="nombre-producto">{{ appetizer.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <div class="productos-categoria">
     <div class="categoria-header">
       <h2>Pizzas Favoritas</h2>
-      <ion-button fill="clear" class="flecha-derecha" routerLink="/completos">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
     </div>
-
+  
     <div class="productos-scroll">
-      <div class="producto-card">
-        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
+      <div class="producto-card" *ngFor="let pizza of pizzas">
+        <img [src]="pizza.image" [alt]="pizza.name" class="producto-imagen">
         <button class="btn-agregar">+</button>
         <div class="producto-info">
-          <p class="precio"><strong>CLP 2,000</strong></p>
-          <p class="nombre-producto">Pizza concha y toro</p>
+          <p class="precio"><strong>CLP {{ pizza.price }}</strong></p>
+          <p class="nombre-producto">{{ pizza.name }}</p>
         </div>
       </div>
-
-      <div class="producto-card">
-        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Pizza concha y toro</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Pizza concha y toro</p>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <img src="assets/pizza.webp" alt="Pizza concha y toro" class="producto-imagen">
-        <button class="btn-agregar">+</button>
-        <div class="producto-info">
-          <p class="precio"><strong>CLP 2,500</strong></p>
-          <p class="nombre-producto">Pizza concha y toro</p>
-        </div>
-      </div>
-
-      <!-- Agrega más productos aquí -->
     </div>
   </div>
+  
+
+      <!-- Agrega más productos aquí -->
 </ion-content>
 
 <ion-footer>

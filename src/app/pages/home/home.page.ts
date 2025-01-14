@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductoService } from '../../services/producto.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-home',
@@ -6,30 +8,49 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.page.scss'],
   standalone: false
 })
-export class HomePage {
-  selectedCategory = 'completos';
+export class HomePage implements OnInit {
+  pizzas: Product[] = [];
+  pastas: Product[] = [];
+  appetizers: Product[] = [];
 
-  completos = [
-    { name: 'Italiano', price: 2500, image: 'assets/italiano.jpg' },
-    { name: 'Chileno', price: 2000, image: 'assets/chileno.jpg' },
-    { name: 'Chucrut', price: 1500, image: 'assets/chucrut.jpg' },
-  ];
+  constructor(private productoService: ProductoService) {}
 
-  bebidas = [
-    { name: 'Coca-Cola', price: 1000, image: 'assets/coca-cola.jpg' },
-    { name: 'Fanta', price: 1000, image: 'assets/fanta.jpg' },
-    { name: 'Sprite', price: 1000, image: 'assets/sprite.jpg' },
-  ];
-
-  get selectedProducts() {
-    return this.selectedCategory === 'completos' ? this.completos : this.bebidas;
+  ngOnInit() {
+    this.loadPizzas();
+    this.loadPastas();
+    this.loadAppetizers();
   }
 
-  changeCategory(event: any) {
-    this.selectedCategory = event.detail.value;
+  loadPizzas() {
+    this.productoService.getProductsByCategory('Pizzas').subscribe(
+      (data: Product[]) => {
+        this.pizzas = data;
+      },
+      error => {
+        console.error('Error al cargar las pizzas:', error);
+      }
+    );
   }
 
-  simulateScan() {
-    document.getElementById('scan-result')!.innerText = 'Mesa escaneada';
+  loadPastas() {
+    this.productoService.getProductsByCategory('Pastas').subscribe(
+      (data: Product[]) => {
+        this.pastas = data;
+      },
+      error => {
+        console.error('Error al cargar las pastas:', error);
+      }
+    );
+  }
+
+  loadAppetizers() {
+    this.productoService.getProductsByCategory('Appetizers').subscribe(
+      (data: Product[]) => {
+        this.appetizers = data;
+      },
+      error => {
+        console.error('Error al cargar los appetizers:', error);
+      }
+    );
   }
 }

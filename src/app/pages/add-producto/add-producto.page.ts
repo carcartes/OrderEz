@@ -14,7 +14,7 @@ export class AddProductoPage {
   productCategory: string = '';
   productStatus: string = '';
   imageFile: File | null = null;
-  categories = ['Completos', 'Pizzas', 'Hamburguesas', 'Sandwichs', 'Bebidas', 'Postres', 'Papas'];
+  categories = ['Pastas', 'Pizzas', 'Appetizers', 'Sandwiches', 'Ensalada', 'Postres'];
   statuses = ['Disponible', 'Agotado'];
 
   constructor(private productoService: ProductoService, private router: Router) {}

@@ -84,4 +84,15 @@ export class ProductoService {
       console.error('Error al actualizar el producto:', error);
     }
   }
+
+    // Obtener productos filtrados por categoría
+    getProductsByCategory(category: string): Observable<Product[]> {
+      return this.firestore
+        .collection('productos', ref => 
+          ref.where('category', '==', category).where('status', '==', 'Disponible')
+        )
+        .valueChanges({ idField: 'id' }) as Observable<Product[]>;
+    }
+    
+  
 }

@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,8 +18,33 @@ export class AuthService {
   login(email: string, password: string): Promise<void> {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const userId = userCredential.user?.uid;
+        if (userId) {
+          // Verificar si el carrito ya existe
+          return this.firestore
+            .collection('carritos')
+            .doc(userId)
+            .get()
+            .toPromise()
+            .then((doc) => {
+              if (doc && !doc.exists) {
+                // Crear un nuevo documento de carrito si no existe
+                return this.firestore.collection('carritos').doc(userId).set({
+                  userId: userId,
+                  products: [], // Carrito vacío inicialmente
+                });
+              }
+              // Si el carrito ya existe, no hacer nada y devolver una promesa vacía
+              return Promise.resolve();
+            });
+        } else {
+          // Si no hay UID, rechazar explícitamente
+          return Promise.reject(new Error('No se pudo obtener el UID del usuario'));
+        }
+      })
       .then(() => {
-        console.log('Inicio de sesión exitoso');
+        console.log('Inicio de sesión exitoso y carrito verificado');
         this.router.navigate(['/qr']); // Redirige a la página QR
       })
       .catch((error) => {
@@ -26,7 +52,6 @@ export class AuthService {
         alert('Error: ' + error.message);
       });
   }
-
   // Método para registrarse
   register(email: string, password: string, firstName: string, lastName: string): Promise<void> {
     return this.afAuth
@@ -39,13 +64,20 @@ export class AuthService {
             .collection('users')
             .doc(userId)
             .set({
-              firstName: firstName,  // Guardamos el nombre
-              lastName: lastName,    // Guardamos el apellido
+              firstName: firstName, // Guardamos el nombre
+              lastName: lastName, // Guardamos el apellido
               email: email,
               createdAt: new Date().toISOString(),
             })
             .then(() => {
-              console.log('Usuario guardado en la base de datos');
+              // Crear un documento de carrito vacío para el usuario
+              return this.firestore.collection('carritos').doc(userId).set({
+                userId: userId,
+                products: [], // Carrito vacío inicialmente
+              });
+            })
+            .then(() => {
+              console.log('Usuario y carrito creados correctamente');
               alert('Registro exitoso. Ahora puedes iniciar sesión.');
             });
         } else {
@@ -58,9 +90,6 @@ export class AuthService {
       });
   }
   
-  
-
-
    // Obtener datos del usuario actual
    getUserProfile() {
     return this.afAuth.authState; // Observable del estado de autenticación
@@ -88,5 +117,7 @@ export class AuthService {
       console.error('Error al cerrar sesión:', error);
     });
   }
+
+  
   
 }

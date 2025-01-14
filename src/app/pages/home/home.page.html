@@ -13,7 +13,7 @@
    <!-- Barra de categorías -->
    <div class="category-bar">
     <div class="category-item" (click)="navigateToCategory('Pastas')">
-      <img src="assets/hotdog.png" width="30" height="30">
+      <img src="assets/pasta.png" width="30" height="30">
       <span class="caption">Pastas</span>
     </div>
     <div class="category-item" (click)="navigateToCategory('Pizzas')">
@@ -21,11 +21,11 @@
       <span class="caption">Pizzas</span>
     </div>
     <div class="category-item" (click)="navigateToCategory('Appetizers')">
-      <img src="assets/hamburger.png" width="30" height="30">
+      <img src="assets/apettizer.png" width="30" height="30">
       <span class="caption">Appetizers</span>
     </div>
     <div class="category-item" (click)="navigateToCategory('Ensaladas')">
-      <img src="assets/hamburger.png" width="30" height="30">
+      <img src="assets/salad.png" width="30" height="30">
       <span class="caption">Ensaladas</span>
     </div>
     <div class="category-item" (click)="navigateToCategory('Postres')">
@@ -40,13 +40,13 @@
 
   <div class="productos-categoria">
     <div class="categoria-header">
-      <h2>Pastas Favoritas</h2>
+      <h2>Pastas Destacadas</h2>
     </div>
   
     <div class="productos-scroll">
       <div class="producto-card" *ngFor="let pasta of pastas">
-        <img [src]="pasta.image" [alt]="pasta.name" class="producto-imagen">
-        <button class="btn-agregar">+</button>
+        <img [src]="pasta.image" [alt]="pasta.name" class="producto-imagen" [routerLink]="['/producto', pasta.id]">
+        <button class="btn-agregar" (click)="agregarAlCarrito(pasta)" >+</button>
         <div class="producto-info">
           <p class="precio"><strong>CLP {{ pasta.price }}</strong></p>
           <p class="nombre-producto">{{ pasta.name }}</p>
@@ -57,13 +57,13 @@
   
   <div class="productos-categoria">
     <div class="categoria-header">
-      <h2>Appetizers</h2>
+      <h2>Appetizers Destacados</h2>
     </div>
   
     <div class="productos-scroll">
       <div class="producto-card" *ngFor="let appetizer of appetizers">
-        <img [src]="appetizer.image" [alt]="appetizer.name" class="producto-imagen">
-        <button class="btn-agregar">+</button>
+        <img [src]="appetizer.image" [alt]="appetizer.name" class="producto-imagen" [routerLink]="['/producto', appetizer.id]">
+        <button class="btn-agregar" (click)="agregarAlCarrito(appetizer)">+</button>
         <div class="producto-info">
           <p class="precio"><strong>CLP {{ appetizer.price }}</strong></p>
           <p class="nombre-producto">{{ appetizer.name }}</p>
@@ -74,13 +74,13 @@
   
   <div class="productos-categoria">
     <div class="categoria-header">
-      <h2>Pizzas Favoritas</h2>
+      <h2>Pizzas Destacadas</h2>
     </div>
   
     <div class="productos-scroll">
       <div class="producto-card" *ngFor="let pizza of pizzas">
-        <img [src]="pizza.image" [alt]="pizza.name" class="producto-imagen">
-        <button class="btn-agregar">+</button>
+        <img [src]="pizza.image" [alt]="pizza.name" class="producto-imagen" [routerLink]="['/producto', pizza.id]">
+        <button class="btn-agregar" (click)="agregarAlCarrito(pizza)">+</button>
         <div class="producto-info">
           <p class="precio"><strong>CLP {{ pizza.price }}</strong></p>
           <p class="nombre-producto">{{ pizza.name }}</p>

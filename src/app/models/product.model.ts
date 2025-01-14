@@ -1,10 +1,9 @@
-// src/app/models/product.model.ts
+// product.model.ts
 export interface Product {
-  id?: string;  // Cambiar a opcional
+  id?: string; // El id ahora debe ser obligatorio
   name: string;
-  image: string;
-  category: string;
-  status: string;
   price: number;
-
+  category: string;
+  image: string;
+  status: string;
 }

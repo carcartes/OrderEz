@@ -39,8 +39,6 @@ export class ProductoService {
       return null;
     }
   }
-  
-
   // Subir imagen a Cloudinary y obtener la URL
   uploadImageToCloudinary(file: File) {
     const formData = new FormData();
@@ -93,6 +91,4 @@ export class ProductoService {
         )
         .valueChanges({ idField: 'id' }) as Observable<Product[]>;
     }
-    
-  
 }

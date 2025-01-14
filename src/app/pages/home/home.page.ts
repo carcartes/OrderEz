@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../../services/producto.service';
+import { CarritoService } from '../../services/carrito.service';
 import { Product } from '../../models/product.model';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,10 @@ export class HomePage implements OnInit {
   pastas: Product[] = [];
   appetizers: Product[] = [];
 
-  constructor(private productoService: ProductoService, private router: Router) {}
+  constructor(
+    private carritoService: CarritoService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadPizzas();
@@ -23,7 +26,7 @@ export class HomePage implements OnInit {
   }
 
   loadPizzas() {
-    this.productoService.getProductsByCategory('Pizzas').subscribe(
+    this.carritoService.getProductsByCategory('Pizzas').subscribe(
       (data: Product[]) => {
         this.pizzas = data;
       },
@@ -34,7 +37,7 @@ export class HomePage implements OnInit {
   }
 
   loadPastas() {
-    this.productoService.getProductsByCategory('Pastas').subscribe(
+    this.carritoService.getProductsByCategory('Pastas').subscribe(
       (data: Product[]) => {
         this.pastas = data;
       },
@@ -45,7 +48,7 @@ export class HomePage implements OnInit {
   }
 
   loadAppetizers() {
-    this.productoService.getProductsByCategory('Appetizers').subscribe(
+    this.carritoService.getProductsByCategory('Appetizers').subscribe(
       (data: Product[]) => {
         this.appetizers = data;
       },
@@ -53,6 +56,10 @@ export class HomePage implements OnInit {
         console.error('Error al cargar los appetizers:', error);
       }
     );
+  }
+
+  agregarAlCarrito(product: Product) {
+    this.carritoService.agregarAlCarrito(product);
   }
 
   navigateToCategory(category: string) {

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CarritoService } from '../../services/carrito.service';
+import { CarritoProduct } from '../../services/carrito.service'; 
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -7,35 +10,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./carrito.page.scss'],
   standalone: false
 })
-export class CarritoPage {
-  // Array de productos en el carrito
-  cartItems = [
-    {
-      name: 'Completo Italiano',
-      price: 2500,
-      quantity: 1,
-      image: 'assets/images/completo-italiano.jpg'
-    },
-    {
-      name: 'Coca Cola',
-      price: 1000,
-      quantity: 1,
-      image: 'assets/images/coca-cola.jpg'
-    }
-  ];
+export class CarritoPage implements OnInit, OnDestroy {
+  cartItems: CarritoProduct[] = [];
+  private cartSubscription: Subscription = new Subscription();;
 
-  constructor(private router: Router) {}
+  constructor(
+    private carritoService: CarritoService,
+    private router: Router
+  ) {}
 
-  // Función para disminuir la cantidad
-  decreaseQuantity(index: number) {
-    if (this.cartItems[index].quantity > 1) {
-      this.cartItems[index].quantity--;
-    }
+  ngOnInit() {
+    // Suscribirse al Observable para obtener los productos del carrito
+    this.cartSubscription = this.carritoService.getCarritoProductos().subscribe(products => {
+      this.cartItems = products;
+    });
   }
 
-  // Función para aumentar la cantidad
-  increaseQuantity(index: number) {
-    this.cartItems[index].quantity++;
+  ngOnDestroy() {
+    // Desuscribirse cuando el componente sea destruido
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
   }
 
   // Función para redirigir a la página de inicio
@@ -48,14 +43,25 @@ export class CarritoPage {
     return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
-  // Función para agregar un producto al carrito (puedes personalizarla)
-  addItem() {
-    const newItem = {
-      name: 'Nuevo Producto',
-      price: 1500,
-      quantity: 1,
-      image: 'assets/images/nuevo-producto.jpg'
-    };
-    this.cartItems.push(newItem);
+  // Incrementar la cantidad del producto
+  increaseQuantity(item: CarritoProduct) {
+    item.quantity++;
+    this.carritoService.updateProductQuantity(item);  // Actualiza la cantidad en el servicio
+  }
+
+  // Disminuir la cantidad del producto
+  decreaseQuantity(item: CarritoProduct) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.carritoService.updateProductQuantity(item);  // Actualiza la cantidad en el servicio
+    } else {
+      this.removeProduct(item);  // Si la cantidad llega a 0, eliminar el producto
+    }
+  }
+
+  // Eliminar un producto del carrito
+  removeProduct(item: CarritoProduct) {
+    this.carritoService.removeProductFromCarrito(item);  // Llamar al servicio para eliminar el producto
   }
 }
+

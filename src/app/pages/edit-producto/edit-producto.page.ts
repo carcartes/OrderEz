@@ -12,7 +12,7 @@ import { Product } from '../../models/product.model';
 export class EditProductoPage implements OnInit {
   product: Product = { id: '', name: '', price: 0, category: '', image: '', status: '' }; // Producto a editar
 
-  categories = ['Pastas', 'Pizzas', 'Hamburguesas', 'Sandwiches', 'Ensalada', 'Postres'];
+  categories = ['Pastas', 'Pizzas', 'Hamburguesas', 'Sandwiches', 'Ensaladas', 'Postres'];
   statuses = ['Disponible', 'Agotado'];
 
   constructor(

@@ -11,54 +11,37 @@
   </div>
 
   <!-- Listado de productos -->
-  <div class="cart-item">
-    <!-- Producto 1 -->
-    <div class="cart-product">
-      <img src="assets/italiano.jpg" alt="Completo Italiano" class="product-image">
+  <div class="cart-item" *ngIf="cartItems.length > 0; else noProducts">
+    <!-- Producto iterado -->
+    <div class="cart-product" *ngFor="let item of cartItems">
+      <img [src]="item.image" alt="{{ item.name }}" class="product-image">
       <div class="product-info">
-        <div class="product-name"><b>Completo Italiano</b></div>
-        <div class="product-price">CLP 2,500</div>
+        <div class="product-name"><b>{{ item.name }}</b></div>
+        <div class="product-price">CLP {{ item.price | number }}</div>
       </div>
       <div class="quantity-buttons">
-        <button class="quantity-button" >-</button>
-        <span class="quantity">1</span>
-        <button class="quantity-button" >+</button>
+        <button class="quantity-button" (click)="decreaseQuantity(item)">-</button>
+        <span class="quantity">{{ item.quantity }}</span>
+        <button class="quantity-button" (click)="increaseQuantity(item)">+</button>
       </div>
-    </div>
-
-    <!-- Producto 2 -->
-    <div class="cart-product">
-      <img src="assets/coca-cola.jpg" alt="Coca Cola" class="product-image">
-      <div class="product-info">
-        <div class="product-name"><b>Coca Cola</b></div>
-        <div class="product-price">CLP 1,000</div>
-      </div>
-      <div class="quantity-buttons">
-        <button class="quantity-button" >-</button>
-        <span class="quantity">1</span>
-        <button class="quantity-button">+</button>
-      </div>
-    </div>
-
-    <!-- Añadir nuevo producto -->
-    <div class="add-item">
-      <button class="add-item-button" routerLink="/home">+ Añadir ítem</button>
     </div>
   </div>
+
+  <ng-template #noProducts>
+    <div class="no-products ion-text-center">No hay productos en el carrito</div>
+  </ng-template>
 
   <!-- Subtotal y total -->
-  <div class="subtotal">
+  <div class="subtotal" *ngIf="cartItems.length > 0">
     <div class="subtotal-label">Subtotal</div>
-    <div class="subtotal-value">CLP 3,500</div>
+    <div class="subtotal-value">CLP {{ getTotal() | number }}</div>
   </div>
-
-
 
 </ion-content>
 
-  <!-- Footer con botón de continuar -->
-  <ion-footer>
-    <ion-toolbar color="white" class="footer-toolbar">
-      <ion-button expand="full" color="dark" class="continue-button" routerLink="/home" >Solicitar</ion-button>
-    </ion-toolbar>
-  </ion-footer>
+<!-- Footer con botón de continuar -->
+<ion-footer>
+  <ion-toolbar color="white" class="footer-toolbar">
+    <ion-button expand="full" color="dark" class="continue-button" routerLink="/home">Solicitar</ion-button>
+  </ion-toolbar>
+</ion-footer>

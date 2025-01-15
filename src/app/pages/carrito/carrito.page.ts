@@ -63,5 +63,12 @@ export class CarritoPage implements OnInit, OnDestroy {
   removeProduct(item: CarritoProduct) {
     this.carritoService.removeProductFromCarrito(item);  // Llamar al servicio para eliminar el producto
   }
+
+  // CarritoPage
+solicitarPedido() {
+  this.carritoService.solicitarPedido();
+  this.goHome(); // Redirige al Home después de realizar el pedido
+}
+
 }
 

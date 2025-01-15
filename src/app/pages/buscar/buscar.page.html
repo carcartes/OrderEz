@@ -1,7 +1,7 @@
 <ion-header >
   <ion-toolbar color="white" class="header-toolbar ion-shadow">
-    <ion-title class="ion-text-center">
-      <ion-searchbar placeholder="Buscar productos" class="rounded-searchbar"></ion-searchbar>
+    <ion-title class="ion-text-left">
+      <h2>Categorias</h2>
     </ion-title>
     <ion-buttons slot="end" routerLink="/carrito">
       <ion-icon name="cart" size="small" class="icon-cart"></ion-icon>
@@ -12,25 +12,25 @@
 <ion-content class="ion-padding">
   <!-- Título de la sección -->
   <div class="categories-title">
-    <h2><b>Categorías</b></h2>
+    <h2><b>Disfruta los mejores platos</b></h2>
   </div>
 
   <!-- Contenedor de las categorías -->
   <ion-grid>
     <ion-row>
-      <!-- Completos -->
+      <!-- Pastas -->
       <ion-col size="6">
         <div class="category">
-          <img src="assets/completos.jpg" alt="Completos" class="category-image" routerLink="/categoria">
+          <img src="assets/pastas.jpg" alt="Pastas" class="category-image" (click)="navigateToCategory('Pastas')">
           <div class="category-name">Pastas</div>
         </div>
       </ion-col>
       
-      <!-- Hamburguesas -->
+      <!-- Ensaladas -->
       <ion-col size="6">
         <div class="category">
-          <img src="assets/hamburguesas.webp" alt="Hamburguesas" class="category-image">
-          <div class="category-name">Hamburguesas</div>
+          <img src="assets/ensaladas.jpg" alt="Ensaladas" class="category-image" (click)="navigateToCategory('Ensaladas')">
+          <div class="category-name">Ensaladas</div>
         </div>
       </ion-col>
     </ion-row>
@@ -39,7 +39,7 @@
       <!-- Sandwiches -->
       <ion-col size="6">
         <div class="category">
-          <img src="assets/sandwiches.webp" alt="Sandwiches" class="category-image">
+          <img src="assets/sandwiches.jpg" alt="Sandwiches" class="category-image" (click)="navigateToCategory('Sandwiches')">
           <div class="category-name">Sandwiches</div>
         </div>
       </ion-col>
@@ -47,7 +47,7 @@
       <!-- Pizzas -->
       <ion-col size="6">
         <div class="category">
-          <img src="assets/pizzas.webp" alt="Pizzas" class="category-image">
+          <img src="assets/pizzas.jpg" alt="Pizzas" class="category-image" (click)="navigateToCategory('Pizzas')">
           <div class="category-name">Pizzas</div>
         </div>
       </ion-col>
@@ -57,23 +57,21 @@
     <ion-row>
       <ion-col size="6">
         <div class="category">
-          <img src="assets/postres.jpg" alt="Postres" class="category-image">
+          <img src="assets/postres.jpg" alt="Postres" class="category-image" (click)="navigateToCategory('Postres')">
           <div class="category-name">Postres</div>
         </div>
       </ion-col>
       
       <ion-col size="6">
         <div class="category">
-          <img src="assets/bebidas.jpg" alt="Bebidas" class="category-image">
-          <div class="category-name">Bebidas</div>
+          <img src="assets/apettizers.jpg" alt="Apettizers" class="category-image" (click)="navigateToCategory('Apettizers')">
+          <div class="category-name">Apettizers</div>
         </div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="6">
         <div class="category">
-          <img src="assets/papass.jpg" alt="Papas" class="category-image">
-          <div class="category-name">Ensaladas</div>
         </div>
       </ion-col>
       
@@ -96,11 +94,6 @@
     <ion-buttons class="footer-buttons" routerLink="/buscar" >
       <ion-icon name="albums" size="small"></ion-icon>
       <span class="caption">Categorías</span>
-    </ion-buttons>
-
-    <ion-buttons class="footer-buttons" routerLink="/buscar" >
-      <ion-icon name="search" size="small"></ion-icon>
-      <span class="caption">Buscar</span>
     </ion-buttons>
 
     <ion-buttons class="footer-buttons" routerLink="/mis-pedidos" >

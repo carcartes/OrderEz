@@ -1,6 +1,7 @@
 <ion-content>
   <div class="banner">
-    <img src="assets/completos.jpg" alt="Banner de {{ categoryName }}" />
+    <img *ngIf="destacados.length > 0" [src]="destacados[0].image" [alt]="'Banner de ' + categoryName" />
+    <img *ngIf="destacados.length === 0" src="assets/no-img.png" alt="Banner de {{ categoryName }}" />
   </div>
 
   <ion-button class="back-button" size="small" fill="clear" routerLink="/home">

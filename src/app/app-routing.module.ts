@@ -61,7 +61,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pedidos-adm/pedidos-adm.module').then( m => m.PedidosAdmPageModule)
   },
   {
-    path: 'mesa',
+    path: 'mesa/:id',
     loadChildren: () => import('./pages/mesa/mesa.module').then( m => m.MesaPageModule)
   },
   {

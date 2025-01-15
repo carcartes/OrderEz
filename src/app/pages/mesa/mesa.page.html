@@ -1,7 +1,7 @@
 <ion-header>
   <div class="header-toolbar">
     <ion-icon name="close" size="small" class="back-icon" (click)="goBack()"></ion-icon>
-    <h1 class="header-title">Mesa 1</h1>
+    <h1 class="header-title">{{ mesaNombre || 'No asignada' }}</h1>
   </div>
 </ion-header>
 
@@ -19,29 +19,25 @@
   <!-- Pedidos Actuales -->
   <div *ngIf="currentSegment === 'actuales'">
     <h2 class="section-title">Pedidos Actuales</h2>
-    <div class="pedido-item">
-      <div class="pedido-info">
-        <h3>Pedido 101</h3>
-        <p>Fecha: 2024-12-15</p>
-        <p>Nombre: Carlos</p>
-        <p>Estado: Pendiente</p>
-      </div>
-      <div class="pedido-actions">
-        <button class="btn-action" (click)="cambiarEstado()">Cambiar Estado</button>
-        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
-      </div>
-    </div>
-
-    <div class="pedido-item">
-      <div class="pedido-info">
-        <h3>Pedido 102</h3>
-        <p>Fecha: 2024-12-15</p>
-        <p>Nombre: Carlos</p>
-        <p>Estado: En Preparación</p>
-      </div>
-      <div class="pedido-actions">
-        <button class="btn-action" (click)="cambiarEstado()">Cambiar Estado</button>
-        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
+    <div *ngFor="let pedido of pedidos">
+      <!-- Mostrar solo los pedidos cuyo estado no sea 'Entregado' -->
+      <div *ngIf="pedido.estado !== 'Entregado'" class="pedido-item">
+        <div class="pedido-info">
+          <h3>{{ pedido.id }}</h3>
+          <p>Fecha: {{ pedido.fecha?.toDate() | date: 'short' }}</p>
+          <p>Nombre: {{ pedido.solicitadoPor }}</p>
+          <p>Estado: {{ pedido.estado }}</p>
+        </div>
+        <div class="pedido-actions">
+          <!-- Ion Select para cambiar el estado del pedido -->
+          <ion-select [(ngModel)]="pedido.estado" (ionChange)="cambiarEstado(pedido.id, pedido.estado)">
+            <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+            <ion-select-option value="En Proceso">En Proceso</ion-select-option>
+            <ion-select-option value="Entregado">Entregado</ion-select-option>
+            <ion-select-option value="Cancelado">Cancelado</ion-select-option>
+          </ion-select>
+          <button class="btn-action" (click)="verDetalle(pedido)">Ver Detalles</button>
+        </div>
       </div>
     </div>
   </div>
@@ -49,27 +45,18 @@
   <!-- Pedidos Pasados -->
   <div *ngIf="currentSegment === 'pasados'">
     <h2 class="section-title">Pedidos Pasados</h2>
-    <div class="pedido-item">
-      <div class="pedido-info">
-        <h3>Pedido 99</h3>
-        <p>Fecha: 2024-12-14</p>
-        <p>Nombre: Carlos</p>
-        <p>Estado: Entregado</p>
-      </div>
-      <div class="pedido-actions">
-        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
-      </div>
-    </div>
-
-    <div class="pedido-item">
-      <div class="pedido-info">
-        <h3>Pedido 100</h3>
-        <p>Fecha: 2024-12-14</p>
-        <p>Nombre: Carlos</p>
-        <p>Estado: Entregado</p>
-      </div>
-      <div class="pedido-actions">
-        <button class="btn-action" routerLink="/detalle-mesa">Ver Detalles</button>
+    <div *ngFor="let pedido of pedidos">
+      <!-- Mostrar solo los pedidos cuyo estado sea 'Entregado' -->
+      <div *ngIf="pedido.estado === 'Entregado'" class="pedido-item">
+        <div class="pedido-info">
+          <h3>{{ pedido.id }}</h3>
+          <p>Fecha: {{ pedido.fecha?.toDate() | date: 'short' }}</p>
+          <p>Nombre: {{ pedido.solicitadoPor }}</p>
+          <p>Estado: {{ pedido.estado }}</p>
+        </div>
+        <div class="pedido-actions">
+          <button class="btn-action" (click)="verDetalle(pedido)">Ver Detalles</button>
+        </div>
       </div>
     </div>
   </div>

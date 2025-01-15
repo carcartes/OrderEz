@@ -309,7 +309,67 @@ getPedidosByUser(): Observable<any[]> {
   );
 }
 
+// Método para obtener el nombre de la mesa por su ID
+getMesaNombreById(mesaId: string): Observable<string> {
+  return this.firestore
+    .collection('mesas')  // Nombre de la colección de mesas en Firebase
+    .doc(mesaId)  // Buscar mesa por ID
+    .valueChanges()
+    .pipe(
+      map((mesa: any) => mesa ? mesa.nombre : 'Mesa no asignada')  // Usar el operador map para transformar los datos
+    );
+}
 
+// Método para cambiar el estado de un pedido
+cambiarEstado(mesaId: string, pedidoId: string, nuevoEstado: string): void {
+  // Obtener la referencia de la mesa
+  const mesaRef = this.firestore.collection('mesas').doc(mesaId);
+
+  // Obtener la mesa y actualizar el estado del pedido
+  mesaRef.get().toPromise().then(mesaDoc => {
+    if (mesaDoc && mesaDoc.exists) {  // Check if mesaDoc exists and is not null
+      const mesaData = mesaDoc.data() as Mesa;
+      
+      // Buscar el pedido en los pedidos de la mesa
+      const pedidoIndex = mesaData.pedidos.findIndex(pedido => pedido.id === pedidoId);
+
+      if (pedidoIndex !== -1) {
+        // Actualizar el estado del pedido
+        mesaData.pedidos[pedidoIndex].estado = nuevoEstado;
+
+        // Actualizar la mesa con el nuevo estado del pedido
+        mesaRef.update({ pedidos: mesaData.pedidos }).then(() => {
+          console.log('Estado del pedido actualizado correctamente');
+        }).catch(error => {
+          console.error('Error al actualizar el estado del pedido:', error);
+        });
+      } else {
+        console.error('No se encontró el pedido con el ID:', pedidoId);
+      }
+    } else {
+      console.error('La mesa no existe en Firestore');
+    }
+  }).catch(error => {
+    console.error('Error al obtener la mesa:', error);
+  });
+}
+
+
+
+
+// CarritoService - Agregar método para obtener los pedidos por mesa
+getPedidosByMesa(mesaId: string): Observable<any[]> {
+  const mesaRef = this.firestore.collection('mesas').doc(mesaId);
+  return mesaRef.get().pipe(
+    map(mesaDoc => {
+      if (mesaDoc.exists) {
+        const mesaData = mesaDoc.data() as Mesa;
+        return mesaData.pedidos || [];  // Retorna los pedidos de la mesa
+      }
+      return [];
+    })
+  );
+}
 
   
 

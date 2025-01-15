@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';  // Importar Observable
+import { map } from 'rxjs/operators';  // Importar el operador map
 
 
 @Injectable({
@@ -98,6 +100,16 @@ export class AuthService {
   getUserData(uid: string) {
     return this.firestore.collection('users').doc(uid).valueChanges(); // Observable de datos del usuario
   }
+
+  getUserId(): Observable<string | null> {
+    return this.afAuth.authState.pipe(
+      map(user => user ? user.uid : null)
+    );
+  }
+  
+  
+
+  
 
   // Actualizar datos del usuario
   updateUserData(uid: string, data: any) {

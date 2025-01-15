@@ -1,4 +1,4 @@
-<ion-header >
+<ion-header>
   <ion-toolbar color="white" class="header-toolbar ion-shadow">
     <ion-title class="ion-text-left">
       <h2>Ordenes</h2>
@@ -21,86 +21,63 @@
   </ion-segment>
 
   <!-- Sección de Pedidos Actuales -->
-  <div *ngIf="segment === 'actuales'">
-    <h2>Pedidos Pendientes</h2>
-    <ion-list>
-      <!-- Pedido 1 -->
-      <ion-item>
-        <ion-label>
-          <h2>Pedido 101 - Mesa 5</h2>
-          <p>Estado: Pendiente</p>
-          <p>Fecha: 2024-12-15</p>
-          <p>Total: CLP 15,000</p>
-        </ion-label>
-        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
-      </ion-item>
+  <!-- Sección de Pedidos Actuales -->
+<div *ngIf="segment === 'actuales'">
+  <h2>Pedidos Pendientes</h2>
+  <ion-list>
+    <ion-item *ngFor="let pedido of pedidosActuales">
+      <ion-label>
+        <h2>{{ pedido.nombre }} - {{ pedido.mesa }}</h2>
+        <p>Estado: {{ pedido.estado }}</p>
+        <p>Fecha: {{ pedido.fecha | date:'short' }}</p>
+        <p>Total: CLP {{ pedido.total }}</p>
+      </ion-label>
+      <ion-button color="dark" (click)="verDetalle(pedido)">Ver</ion-button>
+    </ion-item>
+  </ion-list>
+</div>
 
-      <!-- Pedido 2 -->
-      <ion-item>
-        <ion-label>
-          <h2>Pedido 102 - Mesa 3</h2>
-          <p>Estado: Pendiente</p>
-          <p>Fecha: 2024-12-15</p>
-          <p>Total: CLP 8,500</p>
-        </ion-label>
-        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
-      </ion-item>
-    </ion-list>
-  </div>
+<!-- Sección de Pedidos Pasados -->
+<div *ngIf="segment === 'pasados'">
+  <h2>Pedidos Entregados</h2>
+  <ion-list>
+    <ion-item *ngFor="let pedido of pedidosPasados">
+      <ion-label>
+        <h2>{{ pedido.nombre }} - {{ pedido.mesa }}</h2>
+        <p>Estado: {{ pedido.estado }}</p>
+        <p>Fecha: {{ pedido.fecha | date:'short' }}</p>
+        <p>Total: CLP {{ pedido.total }}</p>
+      </ion-label>
+      <ion-button color="dark" (click)="verDetalle(pedido)">Ver</ion-button>
+    </ion-item>
+  </ion-list>
+</div>
 
-  <!-- Sección de Pedidos Pasados -->
-  <div *ngIf="segment === 'pasados'">
-    <h2>Pedidos Entregados</h2>
-    <ion-list>
-      <!-- Pedido 3 -->
-      <ion-item>
-        <ion-label>
-          <h2>Pedido 201 - Mesa 2</h2>
-          <p>Estado: Entregado</p>
-          <p>Fecha: 2024-12-15</p>
-          <p>Total: CLP 12,000</p>
-        </ion-label>
-        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
-      </ion-item>
-
-      <!-- Pedido 4 -->
-      <ion-item>
-        <ion-label>
-          <h2>Pedido 202 - Mesa 7</h2>
-          <p>Estado: Entregado</p>
-          <p>Fecha: 2024-12-15</p>
-          <p>Total: CLP 18,000</p>
-        </ion-label>
-        <ion-button color="dark" [routerLink]="'/detalle-mesa'">Ver</ion-button>
-      </ion-item>
-    </ion-list>
-  </div>
 </ion-content>
-
 
 <ion-footer>
   <ion-toolbar color="white" class="footer-toolbar ion-shadow">
-    <ion-buttons class="footer-buttons" routerLink="/home" >
+    <ion-buttons class="footer-buttons" routerLink="/home">
       <ion-icon name="home" size="small"></ion-icon>
       <span class="caption">Inicio</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+    <ion-buttons class="footer-buttons" routerLink="/buscar">
       <ion-icon name="albums" size="small"></ion-icon>
       <span class="caption">Categorías</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/buscar" >
+    <ion-buttons class="footer-buttons" routerLink="/buscar">
       <ion-icon name="search" size="small"></ion-icon>
       <span class="caption">Buscar</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/mis-pedidos" >
+    <ion-buttons class="footer-buttons" routerLink="/mis-pedidos">
       <ion-icon name="receipt" size="small"></ion-icon>
       <span class="caption">Órdenes</span>
     </ion-buttons>
 
-    <ion-buttons class="footer-buttons" routerLink="/perfil" >
+    <ion-buttons class="footer-buttons" routerLink="/perfil">
       <ion-icon name="person" size="small"></ion-icon>
       <span class="caption">Perfil</span>
     </ion-buttons>

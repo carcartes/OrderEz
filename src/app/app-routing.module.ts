@@ -24,10 +24,6 @@ const routes: Routes = [
   },
 
   {
-    path: 'detalle-mesa',
-    loadChildren: () => import('./pages/detalle-mesa/detalle-mesa.module').then( m => m.DetalleMesaPageModule)
-  },
-  {
     path: 'mis-pedidos',
     loadChildren: () => import('./pages/mis-pedidos/mis-pedidos.module').then( m => m.MisPedidosPageModule)
   },
@@ -84,6 +80,11 @@ const routes: Routes = [
     path: 'contra',
     loadChildren: () => import('./pages/contra/contra.module').then( m => m.ContraPageModule)
   },
+  {
+    path: 'detalle-pedido',
+    loadChildren: () => import('./pages/detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
+  },
+
 
 
 

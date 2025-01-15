@@ -5,7 +5,8 @@ import { ProductoService } from './producto.service';
 import { Product } from '../models/product.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Mesa } from '../models/mesa.model'; // Interfaz Mesa
-import { map } from 'rxjs/operators'; // Importar el operador map
+import { switchMap, map } from 'rxjs/operators';  // Asegúrate de importar switchMap y map
+
 
 
 // Exporta la interfaz CarritoProduct para poder usarla en otros archivos
@@ -170,8 +171,6 @@ export class CarritoService {
     );
   }
 
-
-
   agregarMesaAlCarrito(mesaId: string): void {
     this.authService.getUserProfile().subscribe(user => {
       if (user && user.uid) {
@@ -198,65 +197,119 @@ export class CarritoService {
   }
 
   solicitarPedido(): void {
-  this.authService.getUserProfile().subscribe(user => {
-    if (user && user.uid) {
-      const userId = user.uid;
-
-      // Obtén los datos del carrito actual
-      const carritoRef = this.firestore.collection('carritos').doc(userId);
-      carritoRef.get().toPromise().then(doc => {
-        if (doc && doc.exists) {
-          const carritoData = doc.data() as CarritoData & { mesa: string };
-
-          if (carritoData.mesa) {
-            const mesaRef = this.firestore.collection('mesas').doc(carritoData.mesa);
-            mesaRef.get().toPromise().then(mesaDoc => {
-              if (mesaDoc && mesaDoc.exists) {
-                // Si la mesa ya tiene pedidos, agrega el nuevo pedido
-                const mesaData = mesaDoc.data() as Mesa;
-
-                // Agregar los datos del usuario al pedido
-                const newPedido = {
-                  productos: carritoData.products,
-                  total: this.getTotalCarrito(carritoData.products),
-                  fecha: new Date(),
-                  estado: 'Pendiente',
-                  solicitadoPor: userId, // ID del usuario que solicita el pedido
-                };
-
-                const updatedPedidos = mesaData.pedidos ? [...mesaData.pedidos, newPedido] : [newPedido];
-
-                mesaRef.update({ pedidos: updatedPedidos }).then(() => {
-                  console.log('Pedido agregado a la mesa:', carritoData.mesa);
-
-                  // Limpia los productos del carrito pero mantiene la mesa intacta
-                  carritoRef.update({ products: [] }).then(() => {
-                    this.carritoSubject.next([]);
-                    console.log('Carrito limpiado después del pedido, pero mesa intacta');
+    this.authService.getUserProfile().subscribe(user => {
+      if (user && user.uid) {
+        const userId = user.uid;
+  
+        // Obtén los datos del perfil del usuario
+        const userRef = this.firestore.collection('users').doc(userId);
+        userRef.get().toPromise().then(userDoc => {
+          if (userDoc && userDoc.exists) {
+            const userData = userDoc.data() as { firstName: string; lastName: string };
+  
+            // Obtén los datos del carrito actual
+            const carritoRef = this.firestore.collection('carritos').doc(userId);
+            carritoRef.get().toPromise().then(doc => {
+              if (doc && doc.exists) {
+                const carritoData = doc.data() as CarritoData & { mesa: string };
+  
+                if (carritoData.mesa) {
+                  const mesaRef = this.firestore.collection('mesas').doc(carritoData.mesa);
+                  mesaRef.get().toPromise().then(mesaDoc => {
+                    if (mesaDoc && mesaDoc.exists) {
+                      const mesaData = mesaDoc.data() as Mesa;
+  
+                      // Crear el nuevo pedido con todos los datos necesarios
+                      const newPedido = {
+                        productos: carritoData.products,
+                        total: this.getTotalCarrito(carritoData.products),
+                        fecha: new Date(),
+                        estado: 'Pendiente',
+                        solicitadoPor: `${userData.firstName} ${userData.lastName}`, // Nombre completo
+                        solicitadoPorId: userId, // ID del usuario
+                        mesaId: carritoData.mesa, // ID de la mesa
+                        mesaNombre: mesaData.nombre || 'Mesa desconocida' // Nombre de la mesa
+                      };
+  
+                      // Actualizar los pedidos en la mesa
+                      const updatedPedidos = mesaData.pedidos ? [...mesaData.pedidos, newPedido] : [newPedido];
+                      mesaRef.update({ pedidos: updatedPedidos }).then(() => {
+                        console.log('Pedido agregado a la mesa:', carritoData.mesa);
+  
+                        // Limpia los productos del carrito pero mantiene la mesa intacta
+                        carritoRef.update({ products: [] }).then(() => {
+                          this.carritoSubject.next([]);
+                          console.log('Carrito limpiado después del pedido, pero mesa intacta');
+                        });
+                      }).catch(error => {
+                        console.error('Error al actualizar los pedidos de la mesa:', error);
+                      });
+                    } else {
+                      console.error('La mesa no existe en Firestore');
+                    }
+                  }).catch(error => {
+                    console.error('Error al obtener el documento de la mesa:', error);
                   });
-                }).catch(error => {
-                  console.error('Error al actualizar los pedidos de la mesa:', error);
-                });
+                } else {
+                  console.error('No se ha asignado ninguna mesa al carrito');
+                }
               } else {
-                console.error('La mesa no existe en Firestore');
+                console.error('El carrito no existe para este usuario');
               }
             }).catch(error => {
-              console.error('Error al obtener el documento de la mesa:', error);
+              console.error('Error al obtener el carrito:', error);
             });
           } else {
-            console.error('No se ha asignado ninguna mesa al carrito');
+            console.error('El usuario no tiene un perfil válido en Firestore');
           }
-        } else {
-          console.error('El carrito no existe para este usuario');
-        }
-      }).catch(error => {
-        console.error('Error al obtener el carrito:', error);
-      });
-    } else {
-      console.error('Usuario no autenticado');
-    }
-  });
+        }).catch(error => {
+          console.error('Error al obtener el perfil del usuario:', error);
+        });
+      } else {
+        console.error('Usuario no autenticado');
+      }
+    });
+  }
+  
+  
+
+// CarritoService - Agregar método para obtener los pedidos
+getPedidosByUser(): Observable<any[]> {
+  return this.authService.getUserProfile().pipe(
+    switchMap(user => {
+      if (user && user.uid) {
+        const userId = user.uid;
+        const carritoRef = this.firestore.collection('carritos').doc(userId);
+
+        return carritoRef.get().pipe(
+          switchMap(doc => {
+            if (doc && doc.exists) {
+              const carritoData = doc.data() as CarritoData & { mesa: string };
+
+              if (carritoData && carritoData.mesa) {
+                const mesaRef = this.firestore.collection('mesas').doc(carritoData.mesa);
+                return mesaRef.get().pipe(
+                  map(mesaDoc => {
+                    if (mesaDoc && mesaDoc.exists) {
+                      const mesaData = mesaDoc.data() as Mesa;
+                      return mesaData.pedidos || [];  // Retorna los pedidos de la mesa
+                    }
+                    return [];
+                  })
+                );
+              }
+              return [];
+            }
+            return [];
+          })
+        );
+      }
+      return [];
+    })
+  );
 }
+
+
 
   
 

@@ -1,0 +1,34 @@
+
+
+<ion-content>
+
+  <!-- Botón para cerrar y volver al Home -->
+  <div class="close-button" (click)="goBack()">
+    <ion-icon name="close" size="large"></ion-icon>
+  </div>
+
+  <!-- Título "Carro de compras" -->
+  <div class="cart-title">
+    <h2>Detalles Orden</h2>
+  </div>
+
+  <!-- Listado de productos -->
+  <div class="cart-item">
+    <div *ngFor="let producto of pedido.productos" class="cart-product">
+      <img [src]="producto.image" alt="{{ producto.name }}" class="product-image">
+      <div class="product-info">
+        <div class="product-name"><b>{{ producto.name }}</b></div>
+        <div class="product-price">CLP {{ producto.price | number }}</div>
+        <div class="product-price">Cantidad: {{ producto.quantity }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtotal y total -->
+  <div class="subtotal">
+    <div class="subtotal-label">Subtotal</div>
+    <div class="subtotal-value">CLP {{ pedido.total | number }}</div>
+  </div>
+
+</ion-content>
+

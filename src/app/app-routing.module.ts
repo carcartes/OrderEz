@@ -83,7 +83,11 @@ const routes: Routes = [
   {
     path: 'detalle-pedido',
     loadChildren: () => import('./pages/detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
+  },  {
+    path: 'camera',
+    loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule)
   },
+
 
 
 

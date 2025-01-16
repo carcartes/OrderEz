@@ -12,7 +12,9 @@ import { Subscription } from 'rxjs';
 })
 export class CarritoPage implements OnInit, OnDestroy {
   cartItems: CarritoProduct[] = [];
-  private cartSubscription: Subscription = new Subscription();;
+  private cartSubscription: Subscription = new Subscription();
+  mesa: string = '';  // Aquí asigna tu ID de la mesa, puede venir de algún servicio o 
+  mesaNombre: string = '';  // Aquí se guardará el nombre de la mesa
 
   constructor(
     private carritoService: CarritoService,
@@ -24,6 +26,8 @@ export class CarritoPage implements OnInit, OnDestroy {
     this.cartSubscription = this.carritoService.getCarritoProductos().subscribe(products => {
       this.cartItems = products;
     });
+
+    this.loadMesaNombre();  // Cargar el nombre de la mesa cuando se inicie el componente
   }
 
   ngOnDestroy() {
@@ -31,6 +35,15 @@ export class CarritoPage implements OnInit, OnDestroy {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
+  }
+
+  // Función para cargar el nombre de la mesa
+  loadMesaNombre() {
+    console.log('Cargando ID de la mesa:', this.mesa);  // Agregado para verificar el ID
+    this.carritoService.getMesaNombreById(this.mesa).subscribe(nombre => {
+      console.log('Nombre de la mesa recibido:', nombre);  // Agregado para verificar el nombre
+      this.mesaNombre = nombre;  // Asigna el nombre de la mesa
+    });
   }
 
   // Función para redirigir a la página de inicio
@@ -64,11 +77,8 @@ export class CarritoPage implements OnInit, OnDestroy {
     this.carritoService.removeProductFromCarrito(item);  // Llamar al servicio para eliminar el producto
   }
 
-  // CarritoPage
-solicitarPedido() {
-  this.carritoService.solicitarPedido();
-  this.goHome(); // Redirige al Home después de realizar el pedido
+  solicitarPedido() {
+    this.carritoService.solicitarPedido();
+    this.goHome(); // Redirige al Home después de realizar el pedido
+  }
 }
-
-}
-

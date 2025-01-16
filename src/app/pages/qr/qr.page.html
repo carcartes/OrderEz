@@ -1,18 +1,7 @@
-<ion-content class="ion-padding">
-  <div class="qr-container">
-    <h2 class="mensaje">Escanea tu mesa para continuar</h2>
-    <img src="assets/qr.jpg" alt="QR Code" class="qr-imagen" routerLink="/home"/>
-    <ion-button expand="block" color="dark" routerLink="/">
-      Cancelar
-    </ion-button>
-  </div>
 
-  <div class="mesa-selector">
-    <h3>Selecciona una mesa</h3>
-    <ion-select [(ngModel)]="selectedMesa" (ionChange)="onMesaChange()">
-      <ion-select-option *ngFor="let mesa of mesas" [value]="mesa.id">
-        {{ mesa.nombre }}
-      </ion-select-option>
-    </ion-select>
-  </div>
+<ion-content>
+  <!-- Aquí tienes el botón para escanear -->
+   <div class="btn-center">
+    <ion-button (click)="scan()" color="dark">Escanear QR</ion-button></div>
+  
 </ion-content>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
-import { CarritoService } from '../../services/carrito.service'; // Importa el CarritoService
+import { CarritoService } from '../../services/carrito.service';  // Importa el CarritoService
 import { Product } from '../../models/product.model';
-import { ToastController } from '@ionic/angular'; // Importa ToastController
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-categoria',
@@ -19,8 +19,8 @@ export class CategoriaPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productoService: ProductoService,
-    private carritoService: CarritoService, // Inyecta el CarritoService
-    private toastController: ToastController // Inyecta ToastController
+    private carritoService: CarritoService,  // Inyecta el CarritoService
+private toastController: ToastController
   ) {}
 
   ngOnInit() {

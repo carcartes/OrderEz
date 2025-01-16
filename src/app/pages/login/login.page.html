@@ -18,8 +18,13 @@
             <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
           </ion-item>
 
-          <ion-button expand="block" color="dark" class="ion-margin-top" type="submit">
-            Iniciar Sesión
+          <ion-button 
+            expand="block" 
+            color="dark" 
+            class="ion-margin-top" 
+            type="submit" 
+            [disabled]="isLoggingIn">
+            {{ isLoggingIn ? 'Verificando...' : 'Iniciar Sesión' }}
           </ion-button>
         </form>
 

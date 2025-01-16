@@ -1,37 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  standalone: false
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
   firstName = '';
   lastName = '';
   email = '';
   password = '';
   confirmPassword = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private toastController: ToastController,
+    private router: Router // Inyectamos el servicio Router
+  ) {}
 
-  ngOnInit() {}
-
-  onRegister() {
+  // Método para manejar el registro
+  async onRegister() {
     if (this.password !== this.confirmPassword) {
-      alert('Las contraseñas no coinciden.');
+      this.showToast('Las contraseñas no coinciden.', 'warning');
       return;
     }
 
-    // Registrar los campos por separado (firstName y lastName)
-    this.authService
-      .register(this.email, this.password, this.firstName, this.lastName)
-      .then(() => {
-        console.log('Usuario registrado con éxito');
-      })
-      .catch((error) => {
-        alert('Error al registrarse: ' + error.message);
-      });
+    try {
+      await this.authService.register(this.email, this.password, this.firstName, this.lastName);
+      this.showToast('Registro exitoso. Ahora puedes iniciar sesión.', 'dark');
+
+      // Redirigir al usuario al login después de 1 segundo (opcional para que vea el toast)
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1000);
+    } catch (error: any) {
+      this.showToast(`Error al registrarse: ${error.message}`, 'danger');
+    }
+  }
+
+  // Método para mostrar un Toast dinámico
+  private async showToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000,
+      color,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

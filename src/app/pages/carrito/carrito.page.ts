@@ -3,6 +3,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { CarritoProduct } from '../../services/carrito.service'; 
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ToastController } from '@ionic/angular';  // Importa ToastController
 
 @Component({
   selector: 'app-carrito',
@@ -18,7 +19,8 @@ export class CarritoPage implements OnInit, OnDestroy {
 
   constructor(
     private carritoService: CarritoService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController  // Inyecta ToastController
   ) {}
 
   ngOnInit() {
@@ -77,8 +79,22 @@ export class CarritoPage implements OnInit, OnDestroy {
     this.carritoService.removeProductFromCarrito(item);  // Llamar al servicio para eliminar el producto
   }
 
-  solicitarPedido() {
-    this.carritoService.solicitarPedido();
+  // Función para solicitar el pedido y mostrar un Toast
+  async solicitarPedido() {
+    this.carritoService.solicitarPedido();  // Solicita el pedido
+    await this.presentToast();  // Muestra el Toast de éxito
     this.goHome(); // Redirige al Home después de realizar el pedido
+  }
+
+  // Función para mostrar el Toast de "Pedido solicitado con éxito"
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Pedido solicitado con éxito',
+      duration: 1000,  // Duración en milisegundos
+      position: 'bottom',
+      color: 'light',  // Color verde de éxito
+    });
+
+    await toast.present();
   }
 }

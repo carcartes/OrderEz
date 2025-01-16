@@ -16,14 +16,12 @@ export class AuthService {
     private router: Router
   ) {}
 
-  // Método para iniciar sesión
-  login(email: string, password: string): Promise<void> {
+  login(email: string, password: string): Promise<boolean> {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         const userId = userCredential.user?.uid;
         if (userId) {
-          // Verificar si el carrito ya existe
           return this.firestore
             .collection('carritos')
             .doc(userId)
@@ -35,62 +33,58 @@ export class AuthService {
                 return this.firestore.collection('carritos').doc(userId).set({
                   userId: userId,
                   products: [], // Carrito vacío inicialmente
-                });
+                }).then(() => true); // Indicar éxito
               }
-              // Si el carrito ya existe, no hacer nada y devolver una promesa vacía
-              return Promise.resolve();
+              return true; // Si el carrito ya existe
             });
         } else {
-          // Si no hay UID, rechazar explícitamente
           return Promise.reject(new Error('No se pudo obtener el UID del usuario'));
         }
       })
       .then(() => {
         console.log('Inicio de sesión exitoso y carrito verificado');
         this.router.navigate(['/qr']); // Redirige a la página QR
+        return true; // Indicar éxito
       })
       .catch((error) => {
         console.error('Error al iniciar sesión:', error.message);
         alert('Error: ' + error.message);
+        return false; // Indicar fallo
       });
   }
+  
   // Método para registrarse
-  register(email: string, password: string, firstName: string, lastName: string): Promise<void> {
-    return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const userId = userCredential.user?.uid; // Obtenemos el UID del usuario registrado
-        if (userId) {
-          // Guardar los datos adicionales en Firestore con los campos separados
-          return this.firestore
-            .collection('users')
-            .doc(userId)
-            .set({
-              firstName: firstName, // Guardamos el nombre
-              lastName: lastName, // Guardamos el apellido
-              email: email,
-              createdAt: new Date().toISOString(),
-            })
-            .then(() => {
-              // Crear un documento de carrito vacío para el usuario
-              return this.firestore.collection('carritos').doc(userId).set({
-                userId: userId,
-                products: [], // Carrito vacío inicialmente
-              });
-            })
-            .then(() => {
-              console.log('Usuario y carrito creados correctamente');
-              alert('Registro exitoso. Ahora puedes iniciar sesión.');
+register(email: string, password: string, firstName: string, lastName: string): Promise<void> {
+  return this.afAuth
+    .createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const userId = userCredential.user?.uid;
+      if (userId) {
+        return this.firestore
+          .collection('users')
+          .doc(userId)
+          .set({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            createdAt: new Date().toISOString(),
+          })
+          .then(() => {
+            return this.firestore.collection('carritos').doc(userId).set({
+              userId: userId,
+              products: [],
             });
-        } else {
-          throw new Error('No se pudo obtener el UID del usuario');
-        }
-      })
-      .catch((error) => {
-        console.error('Error al registrarse:', error.message);
-        throw error;
-      });
-  }
+          });
+      } else {
+        throw new Error('No se pudo obtener el UID del usuario');
+      }
+    })
+    .catch((error) => {
+      console.error('Error al registrarse:', error.message);
+      throw error; // Se propaga el error para manejarlo en el componente
+    });
+}
+
   
    // Obtener datos del usuario actual
    getUserProfile() {

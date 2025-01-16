@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../../services/producto.service';
-import { Product } from '../../models/product.model';  // Definimos el modelo
+import { Product } from '../../models/product.model';
+import { ToastController } from '@ionic/angular';  // Importar ToastController
 
 @Component({
   selector: 'app-catalogo',
@@ -12,7 +13,10 @@ export class CatalogoPage implements OnInit {
   products: Product[] = [];  // Lista de productos
   filteredProducts: Product[] = this.products;  // Productos filtrados
 
-  constructor(private productoService: ProductoService) {}
+  constructor(
+    private productoService: ProductoService,
+    private toastController: ToastController  // Inyectar ToastController
+  ) {}
 
   ngOnInit() {
     // Nos suscribimos al observable de productos
@@ -31,6 +35,17 @@ export class CatalogoPage implements OnInit {
     }
   }
 
+  // Función para mostrar Toast
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1000,  // Duración de 1000ms
+      color: color,  // Color 'light'
+      position: 'bottom'  // Mostrar en la parte inferior
+    });
+    toast.present();
+  }
+
   // Función para eliminar un producto
   deleteProduct(productId: string | undefined) {
     if (!productId) {
@@ -41,9 +56,11 @@ export class CatalogoPage implements OnInit {
     this.productoService.deleteProduct(productId).then(() => {
       // Actualizamos la lista de productos después de eliminar uno
       this.filteredProducts = this.filteredProducts.filter(product => product.id !== productId);
+      
+      // Mostrar el toast de éxito
+      this.presentToast('Producto eliminado con éxito', 'light');  // Toast de éxito
     }).catch(error => {
       console.error('Error al eliminar el producto:', error);
     });
   }
-  
 }

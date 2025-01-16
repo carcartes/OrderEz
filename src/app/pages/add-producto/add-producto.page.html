@@ -30,6 +30,7 @@
     </div>
 
     <div class="input-group">
+      <ion-label>Agotado/Disponible</ion-label>
       <ion-select [(ngModel)]="productStatus">
         <ion-select-option *ngFor="let status of statuses" [value]="status">{{ status }}</ion-select-option>
       </ion-select>

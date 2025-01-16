@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
-import { CarritoService } from '../../services/carrito.service';  // Importa el CarritoService
+import { CarritoService } from '../../services/carrito.service'; // Importa el CarritoService
 import { Product } from '../../models/product.model';
+import { ToastController } from '@ionic/angular'; // Importa ToastController
 
 @Component({
   selector: 'app-categoria',
@@ -18,7 +19,8 @@ export class CategoriaPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productoService: ProductoService,
-    private carritoService: CarritoService  // Inyecta el CarritoService
+    private carritoService: CarritoService, // Inyecta el CarritoService
+    private toastController: ToastController // Inyecta ToastController
   ) {}
 
   ngOnInit() {
@@ -38,8 +40,18 @@ export class CategoriaPage implements OnInit {
     );
   }
 
-  agregarAlCarrito(producto: Product) {
-    const quantity = 1;  // Puedes ajustar la cantidad según lo que necesites
+  async agregarAlCarrito(producto: Product) {
+    const quantity = 1; // Cantidad predeterminada
     this.carritoService.agregarAlCarrito(producto, quantity);
+
+    // Mostrar Toast de "Agregado con éxito"
+    const toast = await this.toastController.create({
+      message: 'Producto agregado con éxito',
+      duration: 1000, // Duración en milisegundos
+      position: 'bottom',
+      color: 'light', // Color del Toast
+    });
+
+    await toast.present();
   }
 }

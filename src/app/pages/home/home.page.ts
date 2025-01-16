@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
 import { Product } from '../../models/product.model';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular'; // Importar ToastController
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private carritoService: CarritoService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController // Inyectar ToastController
   ) {}
 
   ngOnInit() {
@@ -58,8 +60,18 @@ export class HomePage implements OnInit {
     );
   }
 
-  agregarAlCarrito(product: Product) {
+  async agregarAlCarrito(product: Product) {
     this.carritoService.agregarAlCarrito(product);
+
+    // Mostrar Toast de "Agregado con éxito"
+    const toast = await this.toastController.create({
+      message: 'Agregado con éxito',
+      duration: 1000, // Duración en milisegundos
+      position: 'bottom',
+      color: 'light', // Color del Toast
+    });
+
+    await toast.present();
   }
 
   navigateToCategory(category: string) {
